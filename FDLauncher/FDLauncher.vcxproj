@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A76A0F57-3FD3-4974-8992-87A743E99ABF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>FDLauncher</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>../bin/debug</OutDir>
+    <IntDir>../obj/debug</IntDir>
+    <IncludePath>../include;../include/wtl;./DUILib;$(IncludePath)</IncludePath>
+    <LibraryPath>../lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>../bin/release</OutDir>
+    <IntDir>../obj/release</IntDir>
+    <IncludePath>../include;../include/wtl;./DUILib;$(IncludePath)</IncludePath>
+    <LibraryPath>../lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>UILIB_EXPORTS;UNICODE;_UNICODE;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>UILIB_EXPORTS;UNICODE;_UNICODE;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="FDLauncher.ico" />
+    <None Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DUILib\downloadmgr.h" />
+    <ClInclude Include="DUILib\FlashEventHandler.h" />
+    <ClInclude Include="DUILib\ImageEx.h" />
+    <ClInclude Include="DUILib\UIActiveX.h" />
+    <ClInclude Include="DUILib\UIBase.h" />
+    <ClInclude Include="DUILib\UICombo.h" />
+    <ClInclude Include="DUILib\UICommonControls.h" />
+    <ClInclude Include="DUILib\UIContainer.h" />
+    <ClInclude Include="DUILib\UIControl.h" />
+    <ClInclude Include="DUILib\UIDelegate.h" />
+    <ClInclude Include="DUILib\UIDlgBuilder.h" />
+    <ClInclude Include="DUILib\UIImageAnimation.h" />
+    <ClInclude Include="DUILib\UIImageTurner.h" />
+    <ClInclude Include="DUILib\UIlib.h" />
+    <ClInclude Include="DUILib\UIList.h" />
+    <ClInclude Include="DUILib\UIListEdit.h" />
+    <ClInclude Include="DUILib\UIManager.h" />
+    <ClInclude Include="DUILib\UIMarkup.h" />
+    <ClInclude Include="DUILib\UIPieChart.h" />
+    <ClInclude Include="DUILib\UIRender.h" />
+    <ClInclude Include="DUILib\UIRichEdit.h" />
+    <ClInclude Include="DUILib\UIStringResource.h" />
+    <ClInclude Include="DUILib\UITreeView.h" />
+    <ClInclude Include="DUILib\UIValidator.h" />
+    <ClInclude Include="DUILib\UIWebBrowser.h" />
+    <ClInclude Include="DUILib\WebBrowserEventHandler.h" />
+    <ClInclude Include="FDAppModule.h" />
+    <ClInclude Include="FDLauncher.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="UI\Ctrl\ShadowWnd.h" />
+    <ClInclude Include="UI\Ctrl\TitleBar.h" />
+    <ClInclude Include="UI\Dlg\IrregularShapeDlg.h" />
+    <ClInclude Include="UI\FormUI.h" />
+    <ClInclude Include="UI\messagebox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DUILib\ImageEx.cpp" />
+    <ClCompile Include="DUILib\stb_image.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIActiveX.cpp" />
+    <ClCompile Include="DUILib\UIBase.cpp" />
+    <ClCompile Include="DUILib\UICombo.cpp" />
+    <ClCompile Include="DUILib\UICommonControls.cpp" />
+    <ClCompile Include="DUILib\UIContainer.cpp" />
+    <ClCompile Include="DUILib\UIControl.cpp" />
+    <ClCompile Include="DUILib\UIDelegate.cpp" />
+    <ClCompile Include="DUILib\UIDlgBuilder.cpp" />
+    <ClCompile Include="DUILib\UIImageAnimation.cpp" />
+    <ClCompile Include="DUILib\UIImageTurner.cpp" />
+    <ClCompile Include="DUILib\UIlib.cpp" />
+    <ClCompile Include="DUILib\UIList.cpp" />
+    <ClCompile Include="DUILib\UIListEdit.cpp" />
+    <ClCompile Include="DUILib\UIManager.cpp" />
+    <ClCompile Include="DUILib\UIMarkup.cpp" />
+    <ClCompile Include="DUILib\UIPieChart.cpp" />
+    <ClCompile Include="DUILib\UIRender.cpp" />
+    <ClCompile Include="DUILib\UIRichEdit.cpp" />
+    <ClCompile Include="DUILib\UIStringResource.cpp" />
+    <ClCompile Include="DUILib\UITreeView.cpp" />
+    <ClCompile Include="DUILib\UIValidator.cpp" />
+    <ClCompile Include="DUILib\UIWebBrowser.cpp" />
+    <ClCompile Include="DUILib\XUnzip.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="FDAppModule.cpp" />
+    <ClCompile Include="FDLauncher.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="UI\Ctrl\TitleBar.cpp" />
+    <ClCompile Include="UI\Dlg\IrregularShapeDlg.cpp" />
+    <ClCompile Include="UI\FormUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FDLauncher.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

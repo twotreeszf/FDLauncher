@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SupportFiles">
+      <UniqueIdentifier>{e1a5f8aa-9420-40e7-ae39-a37f8b988acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DUILib">
+      <UniqueIdentifier>{bf753cfb-1834-4409-b213-0298b0db3591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{9eca1568-4450-4958-8b83-cf221955acd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Ctrl">
+      <UniqueIdentifier>{d969b5c6-f38c-4d25-ae8e-0a3bbaf5076e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Dlg">
+      <UniqueIdentifier>{887a55d1-5af1-4850-9f46-bbbdc4b6125f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="FDLauncher.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FDLauncher.h">
+      <Filter>SupportFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>SupportFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>SupportFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>SupportFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\downloadmgr.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\FlashEventHandler.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\ImageEx.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIActiveX.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIBase.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UICombo.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UICommonControls.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIContainer.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIControl.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIDelegate.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIDlgBuilder.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIImageAnimation.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIImageTurner.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIlib.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIList.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIListEdit.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIManager.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIMarkup.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIPieChart.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIRender.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIRichEdit.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIStringResource.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UITreeView.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIValidator.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\UIWebBrowser.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILib\WebBrowserEventHandler.h">
+      <Filter>DUILib</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\FormUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Ctrl\ShadowWnd.h">
+      <Filter>UI\Ctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Ctrl\TitleBar.h">
+      <Filter>UI\Ctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\messagebox.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Dlg\IrregularShapeDlg.h">
+      <Filter>UI\Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="FDAppModule.h">
+      <Filter>SupportFiles</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FDLauncher.cpp">
+      <Filter>SupportFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>SupportFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\ImageEx.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\stb_image.c">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIActiveX.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIBase.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UICombo.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UICommonControls.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIContainer.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIControl.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIDelegate.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIDlgBuilder.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIImageAnimation.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIImageTurner.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIlib.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIList.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIListEdit.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIManager.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIMarkup.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIPieChart.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIRender.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIRichEdit.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIStringResource.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UITreeView.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIValidator.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\UIWebBrowser.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILib\XUnzip.cpp">
+      <Filter>DUILib</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\FormUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Ctrl\TitleBar.cpp">
+      <Filter>UI\Ctrl</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Dlg\IrregularShapeDlg.cpp">
+      <Filter>UI\Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="FDAppModule.cpp">
+      <Filter>SupportFiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FDLauncher.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
