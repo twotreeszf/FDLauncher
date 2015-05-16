@@ -29,3 +29,7 @@
 #folders
 bin/
 obj/
+
+#MSVC
+*.suo
+*.user

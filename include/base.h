@@ -32,18 +32,6 @@
 #undef A2W_CP_EX
 #undef W2A_CP_EX
 
-/*
-#define A2W_CP(lpa, cp) (\
-	((_lpa = lpa) == NULL) ? NULL : (\
- 	_convert = (::MultiByteToWideChar(cp, 0, _lpa, (int)(strlen(_lpa)), NULL, 0) + 1), \
-	ATLA2WHELPER((LPWSTR) alloca(_convert*sizeof(WCHAR)), _lpa, _convert, cp)))
-
-#define W2A_CP(lpw, cp) (\
-	((_lpw = lpw) == NULL) ? NULL : (\
-	(_convert = (WideCharToMultiByte(cp, 0, _lpw, (int)(wcslen(_lpw)), NULL, 0, NULL, NULL) + 1), \
-	ATLW2AHELPER((LPSTR)(_lpa=(LPCSTR) alloca(_convert), memset((LPSTR)_lpa, 0, _convert), _lpa), _lpw, _convert, cp))))
-*/
-
 #define Z_A2W_CP_EX(lpa, nChars, cp) (\
 	((_lpa_ex = lpa) == NULL) ? NULL : (\
 	_convert_ex = (::MultiByteToWideChar(cp, 0, _lpa_ex, (int)(strlen(_lpa_ex)), NULL, 0) + 1), \

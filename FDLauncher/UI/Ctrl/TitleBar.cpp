@@ -9,12 +9,6 @@
 #include "stdafx.h"
 #include "TitleBar.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
-
 CControlUI* CALLBACK __FindControlFromName(CControlUI* pThis, LPVOID pData)
 {
 	LPCTSTR pstrName = static_cast<LPCTSTR>(pData);

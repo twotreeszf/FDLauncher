@@ -20,6 +20,9 @@
     <Filter Include="UI\Dlg">
       <UniqueIdentifier>{887a55d1-5af1-4850-9f46-bbbdc4b6125f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\Test">
+      <UniqueIdentifier>{27268f55-453d-4286-aecc-5e41e4a9e65b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -138,6 +141,12 @@
     <ClInclude Include="FDAppModule.h">
       <Filter>SupportFiles</Filter>
     </ClInclude>
+    <ClInclude Include="UI\Ctrl\UIBuilderCallback.h">
+      <Filter>UI\Ctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Test\AboutDlg.h">
+      <Filter>UI\Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FDLauncher.cpp">
@@ -232,6 +241,12 @@
     </ClCompile>
     <ClCompile Include="FDAppModule.cpp">
       <Filter>SupportFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Ctrl\UIBuilderCallback.cpp">
+      <Filter>UI\Ctrl</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Test\AboutDlg.cpp">
+      <Filter>UI\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

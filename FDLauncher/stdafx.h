@@ -71,7 +71,7 @@
 using namespace DuiLib;
 
 #include <base.h>
-#include <errorcheck.h>
+#include <ErrorCheck.h>
 #include "FDAppModule.h"
 
 extern CFDAppModule _Module;
