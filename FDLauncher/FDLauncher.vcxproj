@@ -92,12 +92,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Core\JsonCpp\json_valueiterator.inl" />
     <None Include="FDLauncher.ico" />
     <None Include="Skin.zip" />
     <None Include="skin\skin.zip" />
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\JsonCpp\autolink.h" />
+    <ClInclude Include="Core\JsonCpp\config.h" />
+    <ClInclude Include="Core\JsonCpp\features.h" />
+    <ClInclude Include="Core\JsonCpp\forwards.h" />
+    <ClInclude Include="Core\JsonCpp\json.h" />
+    <ClInclude Include="Core\JsonCpp\json_batchallocator.h" />
+    <ClInclude Include="Core\JsonCpp\json_tool.h" />
+    <ClInclude Include="Core\JsonCpp\reader.h" />
+    <ClInclude Include="Core\JsonCpp\value.h" />
+    <ClInclude Include="Core\JsonCpp\writer.h" />
     <ClInclude Include="Core\LibcRULHttp\FileProgressDelegate.h" />
     <ClInclude Include="Core\LibcRULHttp\HttpHlp.h" />
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpBase.h" />
@@ -113,6 +124,8 @@
     <ClInclude Include="Core\Misc\ErrorCode.h" />
     <ClInclude Include="Core\Misc\StringConv\StringConv.h" />
     <ClInclude Include="Core\Misc\StringHelper.h" />
+    <ClInclude Include="Core\NotificationCenter\INotificationCenter.h" />
+    <ClInclude Include="Core\NotificationCenter\NotificationCenter.h" />
     <ClInclude Include="DUILib\downloadmgr.h" />
     <ClInclude Include="DUILib\FlashEventHandler.h" />
     <ClInclude Include="DUILib\ImageEx.h" />
@@ -153,6 +166,18 @@
     <ClInclude Include="UI\Test\AboutDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\JsonCpp\json_reader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Core\JsonCpp\json_value.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Core\JsonCpp\json_writer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Core\LibcRULHttp\LibCurlHttpBase.cpp" />
     <ClCompile Include="Core\LibcRULHttp\LibCurlHttpGetDownload.cpp" />
     <ClCompile Include="Core\LibcRULHttp\LibCurlHttpGetRequest.cpp" />
@@ -162,6 +187,7 @@
     <ClCompile Include="Core\Misc\FileConfig\FileConfig.cpp" />
     <ClCompile Include="Core\Misc\StringConv\StringConv.cpp" />
     <ClCompile Include="Core\Misc\StringHelper.cpp" />
+    <ClCompile Include="Core\NotificationCenter\NotificationCenter.cpp" />
     <ClCompile Include="DUILib\ImageEx.cpp" />
     <ClCompile Include="DUILib\stb_image.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

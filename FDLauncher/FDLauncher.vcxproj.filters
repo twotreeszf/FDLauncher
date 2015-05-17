@@ -41,6 +41,12 @@
     <Filter Include="Core\Misc\StringConv">
       <UniqueIdentifier>{bc744080-5f32-4212-bf69-d5397b6f1980}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\NotificationCenter">
+      <UniqueIdentifier>{dbdea332-e6f6-4374-835d-313f3cdafb9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\JsonCPP">
+      <UniqueIdentifier>{f05ed424-2f28-4043-8029-d1eae4da86a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -51,6 +57,9 @@
     </None>
     <None Include="Skin.zip" />
     <None Include="skin\skin.zip" />
+    <None Include="Core\JsonCpp\json_valueiterator.inl">
+      <Filter>Core\JsonCPP</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FDLauncher.h">
@@ -212,6 +221,42 @@
     <ClInclude Include="Core\Misc\ErrorCode.h">
       <Filter>Core\Misc</Filter>
     </ClInclude>
+    <ClInclude Include="Core\NotificationCenter\NotificationCenter.h">
+      <Filter>Core\NotificationCenter</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\autolink.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\config.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\features.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\forwards.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\json.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\json_batchallocator.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\json_tool.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\reader.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\value.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonCpp\writer.h">
+      <Filter>Core\JsonCPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\NotificationCenter\INotificationCenter.h">
+      <Filter>Core\NotificationCenter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FDLauncher.cpp">
@@ -339,6 +384,18 @@
     </ClCompile>
     <ClCompile Include="Core\Misc\StringConv\StringConv.cpp">
       <Filter>Core\Misc\StringConv</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\NotificationCenter\NotificationCenter.cpp">
+      <Filter>Core\NotificationCenter</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\JsonCpp\json_reader.cpp">
+      <Filter>Core\JsonCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\JsonCpp\json_value.cpp">
+      <Filter>Core\JsonCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\JsonCpp\json_writer.cpp">
+      <Filter>Core\JsonCPP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
