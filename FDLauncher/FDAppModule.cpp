@@ -24,7 +24,7 @@ HRESULT CFDAppModule::Init(ATL::_ATL_OBJMAP_ENTRY* pObjMap, HINSTANCE hInstance,
 #ifndef _DEBUG
 	m_hSkinResource = ::FindResource(hInstance,  MAKEINTRESOURCE(IDR_SKIN), L"RC_SKIN");
 	HGLOBAL hGlobal = ::LoadResource(hInstance, m_hSkinResource);
-	CHECK_BOOLEX_ERR(hGlobal != NULL, hRet = E_FAIL, L"Load Skin Resource Error.");		
+	X_ASSERT(hGlobal);
 	m_uiResource.SetResourceZip((LPVOID)::LockResource(hGlobal), SizeofResource(hInstance, m_hSkinResource));
 #else
 	TCHAR fullPath[MAX_PATH];

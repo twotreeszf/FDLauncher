@@ -11,14 +11,15 @@
 
 #include "CrossPlatformConfig.h"
 
-#define LOG_ERROR     void(0)
+#define LOG_ERROR		void(0)
+#define LOG_INFO		void(0)
 
 //---------------------------------------------------------------------------
 #if defined(_DEBUG) && !defined(DISABLE_ASSERT)
 
     #if defined (_WIN32) || defined(_WIN64)
         #include <crtdbg.h>
-        #define XLIVE_ASSERT(exp)               \
+        #define X_ASSERT(exp)               \
         do                                      \
         {                                       \
             _ASSERT(exp);                       \
@@ -30,7 +31,7 @@
         
     #elif defined (__APPLE__)
         #include <CoreFoundation/CoreFoundation.h>
-        #define XLIVE_ASSERT(exp)\
+        #define X_ASSERT(exp)\
         do                                      \
         {                                       \
             if (!(exp))                         \
@@ -43,7 +44,7 @@
             
     #else
         #include <assert.h>
-        #define XLIVE_ASSERT(exp)               \
+        #define X_ASSERT(exp)               \
         do                                      \
         {                                       \
             assert(exp);                        \
@@ -55,7 +56,7 @@
         
     #endif
 #else
-    #define XLIVE_ASSERT(exp)                   \
+    #define X_ASSERT(exp)                   \
     do                                          \
     {                                           \
         if (!(exp))                             \
@@ -80,7 +81,7 @@
     do {																	\
     if (!(exp))															    \
         {																	\
-        XLIVE_ASSERT(!"ERROR_CHECK_BOOL:" #exp);							\
+        X_ASSERT(!"ERROR_CHECK_BOOL:" #exp);							\
         goto Exit0;														    \
         }																	\
     } while(0)
@@ -99,7 +100,7 @@
     do {																	\
     if (!(exp))			    												\
         {																	\
-        XLIVE_ASSERT(!"ERROR_CHECK_BOOLEX" #exp);							\
+        X_ASSERT(!"ERROR_CHECK_BOOLEX" #exp);							\
         exp1;															    \
         goto Exit0;														    \
         }																	\

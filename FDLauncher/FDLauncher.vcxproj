@@ -46,27 +46,29 @@
     <OutDir>../bin/debug</OutDir>
     <IntDir>../obj/debug</IntDir>
     <IncludePath>../include;../include/wtl;./DUILib;$(IncludePath)</IncludePath>
-    <LibraryPath>../lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>../bin/release</OutDir>
     <IntDir>../obj/release</IntDir>
     <IncludePath>../include;../include/wtl;./DUILib;$(IncludePath)</IncludePath>
-    <LibraryPath>../lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>UILIB_EXPORTS;UNICODE;_UNICODE;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CURL_STATICLIB;UILIB_EXPORTS;UNICODE;_UNICODE;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Normaliz.lib;wldap32.lib;ws2_32.lib;libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../lib/debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -76,7 +78,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>UILIB_EXPORTS;UNICODE;_UNICODE;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CURL_STATICLIB;UILIB_EXPORTS;UNICODE;_UNICODE;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
@@ -85,13 +87,32 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Normaliz.lib;wldap32.lib;ws2_32.lib;libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../lib/release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="FDLauncher.ico" />
+    <None Include="Skin.zip" />
+    <None Include="skin\skin.zip" />
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\LibcRULHttp\FileProgressDelegate.h" />
+    <ClInclude Include="Core\LibcRULHttp\HttpHlp.h" />
+    <ClInclude Include="Core\LibcRULHttp\LibCurlHttpBase.h" />
+    <ClInclude Include="Core\LibcRULHttp\LibCurlHttpGetDownload.h" />
+    <ClInclude Include="Core\LibcRULHttp\LibCurlHttpGetRequest.h" />
+    <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostDownload.h" />
+    <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostRequest.h" />
+    <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostUpload.h" />
+    <ClInclude Include="Core\Misc\CrossPlatformConfig.h" />
+    <ClInclude Include="Core\Misc\FastDelegate\FastDelegate.h" />
+    <ClInclude Include="Core\Misc\FastDelegate\FastDelegateBind.h" />
+    <ClInclude Include="Core\Misc\FileConfig\FileConfig.h" />
+    <ClInclude Include="Core\Misc\ErrorCode.h" />
+    <ClInclude Include="Core\Misc\StringConv\StringConv.h" />
+    <ClInclude Include="Core\Misc\StringHelper.h" />
     <ClInclude Include="DUILib\downloadmgr.h" />
     <ClInclude Include="DUILib\FlashEventHandler.h" />
     <ClInclude Include="DUILib\ImageEx.h" />
@@ -132,6 +153,15 @@
     <ClInclude Include="UI\Test\AboutDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\LibcRULHttp\LibCurlHttpBase.cpp" />
+    <ClCompile Include="Core\LibcRULHttp\LibCurlHttpGetDownload.cpp" />
+    <ClCompile Include="Core\LibcRULHttp\LibCurlHttpGetRequest.cpp" />
+    <ClCompile Include="Core\LibcRULHttp\LibCurlHttpPostDownload.cpp" />
+    <ClCompile Include="Core\LibcRULHttp\LibCurlHttpPostRequest.cpp" />
+    <ClCompile Include="Core\LibcRULHttp\LibCurlHttpPostUpload.cpp" />
+    <ClCompile Include="Core\Misc\FileConfig\FileConfig.cpp" />
+    <ClCompile Include="Core\Misc\StringConv\StringConv.cpp" />
+    <ClCompile Include="Core\Misc\StringHelper.cpp" />
     <ClCompile Include="DUILib\ImageEx.cpp" />
     <ClCompile Include="DUILib\stb_image.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -177,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FDLauncher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
