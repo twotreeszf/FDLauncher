@@ -15,7 +15,7 @@
 #include <cstring>
 #include <cstdio>
 #include <vector>
-#include "../Misc/ErrorCheck.h"
+#include "ErrorCheck.h"
 
 // -------------------------------------------------------------------------
 

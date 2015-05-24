@@ -51,7 +51,7 @@ namespace LibCurl
         m_fileBufferSize = bufferSize;
     }
 
-    ErrorCode CHttpPostUpload::uploadFile(const char* url, const std::tr2::sys::path& file, UInt32 lowSpeedTimeoutSec /* = 5 * 60 */)
+    ErrorCode CHttpPostUpload::uploadFile(const char* url, const std::string& file, UInt32 lowSpeedTimeoutSec /* = 5 * 60 */)
     {
         X_ASSERT(url && *url);
         X_ASSERT(!file.empty());

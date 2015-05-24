@@ -321,6 +321,28 @@ namespace StringHelper
 
         return path;
     }
+
+	CompareResult::Type compareVersion(const std::string& L, const std::string& R)
+	{
+		std::vector<std::string> verL, verR;
+		split(L.c_str(), '.', verL);
+		split(R.c_str(), '.', verR);
+
+		UInt32 numL = 0;
+		UInt32 numR = 0;
+		UInt32 index = 0;
+		do 
+		{
+			numL = stringToInt(verL[index]);
+			numR = stringToInt(verR[index]);
+		} 
+		while ((numL == numR) && (++index <= 3));
+
+		if (index > 3)
+			return CompareResult::Equal;
+		else
+			return numL < numR ? CompareResult::Less : CompareResult::Greater;
+	}
 }
 
 //--------------------------------------------------------------------------

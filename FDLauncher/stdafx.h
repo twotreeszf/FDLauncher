@@ -67,6 +67,7 @@
 
 #include <atlapp.h>
 #include <atlmisc.h>
+#include <atlpath.h>
 
 using namespace DuiLib;
 

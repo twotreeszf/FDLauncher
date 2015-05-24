@@ -9,13 +9,6 @@
 #include "IrregularShapeDlg.h"
 #include "../Ctrl/ShadowWnd.h"
 
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
-
 CIrregularShapeDlg::CIrregularShapeDlg(RECT rctTransparent, DWORD dwAWHideFlag, DWORD dwAWShowFlag) 
 	: CAnimatePanelUI(dwAWHideFlag, dwAWShowFlag),
 	m_rctTransparent(rctTransparent)
@@ -31,8 +24,6 @@ CIrregularShapeDlg::~CIrregularShapeDlg()
 void CIrregularShapeDlg::OnInit()
 {
 	ModifyStyleEx(0, WS_EX_LAYERED);
-
-	//SetLayeredWindowAttributes(m_hWnd, RGB(255,0,255), 0, LWA_COLORKEY);
 }
 
 LRESULT CIrregularShapeDlg::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)

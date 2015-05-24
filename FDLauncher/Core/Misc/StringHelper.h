@@ -57,6 +57,18 @@ namespace StringHelper
 
     std::string& removeBackslash(std::string& path);
     std::string& addBackslash(std::string& path);
+
+	struct CompareResult
+	{
+		enum Type
+		{
+			Less = -1,
+			Equal = 0,
+			Greater = 1
+		};
+	};
+
+	CompareResult::Type compareVersion(const std::string& L, const std::string& R);
 }
 
 #endif	/*__StringHelper_h__*/

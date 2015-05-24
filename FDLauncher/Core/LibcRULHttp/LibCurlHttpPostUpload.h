@@ -13,7 +13,6 @@
 #include "../Misc/ErrorCode.h"
 #include "LibCurlHttpBase.h"
 #include "FileProgressDelegate.h"
-#include <filesystem>
 
 // -------------------------------------------------------------------------
 
@@ -40,7 +39,7 @@ namespace LibCurl
         virtual void setCancelDelegate(LibCurl::CancelDelegate cancel);
         void setFileBufferSize(UInt32 bufferSize);
 
-        ErrorCode uploadFile(const char* url, const std::tr2::sys::path& file, UInt32 lowSpeedTimeoutSec = 5 * 60);
+        ErrorCode uploadFile(const char* url, const std::string& file, UInt32 lowSpeedTimeoutSec = 5 * 60);
 
     private:
         virtual void _curlSetDIY();

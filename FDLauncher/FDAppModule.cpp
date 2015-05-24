@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "FDAppModule.h"
 #include "UI/FormUI.h"
-#include "UI/Test/AboutDlg.h"
+#include "UI/FDLauncherDlg/FDLauncherDlg.h"
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"
 
@@ -58,7 +58,7 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 		Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 		Gdiplus::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
 
-		CAboutDlg* about = new CAboutDlg();
+		FDLauncherDlg* about = new FDLauncherDlg();
 		about->Create(NULL);
 		about->ShowWindow(SW_SHOWNORMAL);
 

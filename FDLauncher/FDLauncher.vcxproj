@@ -93,10 +93,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Core\JsonCpp\json_valueiterator.inl" />
-    <None Include="FDLauncher.ico" />
-    <None Include="Skin.zip" />
     <None Include="skin\skin.zip" />
-    <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\JsonCpp\autolink.h" />
@@ -122,8 +119,11 @@
     <ClInclude Include="Core\Misc\FastDelegate\FastDelegateBind.h" />
     <ClInclude Include="Core\Misc\FileConfig\FileConfig.h" />
     <ClInclude Include="Core\Misc\ErrorCode.h" />
+    <ClInclude Include="Core\Misc\FileHash.h" />
+    <ClInclude Include="Core\Misc\MD5\MD5.h" />
     <ClInclude Include="Core\Misc\StringConv\StringConv.h" />
     <ClInclude Include="Core\Misc\StringHelper.h" />
+    <ClInclude Include="Core\Misc\SystemHelper.h" />
     <ClInclude Include="Core\NotificationCenter\INotificationCenter.h" />
     <ClInclude Include="Core\NotificationCenter\NotificationCenter.h" />
     <ClInclude Include="DUILib\downloadmgr.h" />
@@ -161,9 +161,9 @@
     <ClInclude Include="UI\Ctrl\TitleBar.h" />
     <ClInclude Include="UI\Ctrl\UIBuilderCallback.h" />
     <ClInclude Include="UI\Dlg\IrregularShapeDlg.h" />
+    <ClInclude Include="UI\FDLauncherDlg\FDLauncherDlg.h" />
     <ClInclude Include="UI\FormUI.h" />
     <ClInclude Include="UI\messagebox.h" />
-    <ClInclude Include="UI\Test\AboutDlg.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\JsonCpp\json_reader.cpp">
@@ -185,8 +185,10 @@
     <ClCompile Include="Core\LibcRULHttp\LibCurlHttpPostRequest.cpp" />
     <ClCompile Include="Core\LibcRULHttp\LibCurlHttpPostUpload.cpp" />
     <ClCompile Include="Core\Misc\FileConfig\FileConfig.cpp" />
+    <ClCompile Include="Core\Misc\MD5\MD5.cpp" />
     <ClCompile Include="Core\Misc\StringConv\StringConv.cpp" />
     <ClCompile Include="Core\Misc\StringHelper.cpp" />
+    <ClCompile Include="Core\Misc\SystemHelper.cpp" />
     <ClCompile Include="Core\NotificationCenter\NotificationCenter.cpp" />
     <ClCompile Include="DUILib\ImageEx.cpp" />
     <ClCompile Include="DUILib\stb_image.c">
@@ -228,8 +230,8 @@
     <ClCompile Include="UI\Ctrl\TitleBar.cpp" />
     <ClCompile Include="UI\Ctrl\UIBuilderCallback.cpp" />
     <ClCompile Include="UI\Dlg\IrregularShapeDlg.cpp" />
+    <ClCompile Include="UI\FDLauncherDlg\FDLauncherDlg.cpp" />
     <ClCompile Include="UI\FormUI.cpp" />
-    <ClCompile Include="UI\Test\AboutDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FDLauncher.rc" />
