@@ -21,7 +21,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>Static</UseOfAtl>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -29,7 +29,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>Static</UseOfAtl>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -160,9 +160,9 @@
     <ClInclude Include="UI\Ctrl\ShadowWnd.h" />
     <ClInclude Include="UI\Ctrl\TitleBar.h" />
     <ClInclude Include="UI\Ctrl\UIBuilderCallback.h" />
-    <ClInclude Include="UI\Dlg\IrregularShapeDlg.h" />
-    <ClInclude Include="UI\FDLauncherDlg\FDLauncherDlg.h" />
+    <ClInclude Include="UI\Dlg\IrregularForm.h" />
     <ClInclude Include="UI\FormUI.h" />
+    <ClInclude Include="UI\MainDlg\MainDlg.h" />
     <ClInclude Include="UI\messagebox.h" />
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +229,9 @@
     </ClCompile>
     <ClCompile Include="UI\Ctrl\TitleBar.cpp" />
     <ClCompile Include="UI\Ctrl\UIBuilderCallback.cpp" />
-    <ClCompile Include="UI\Dlg\IrregularShapeDlg.cpp" />
-    <ClCompile Include="UI\FDLauncherDlg\FDLauncherDlg.cpp" />
+    <ClCompile Include="UI\Dlg\IrregularForm.cpp" />
     <ClCompile Include="UI\FormUI.cpp" />
+    <ClCompile Include="UI\MainDlg\MainDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FDLauncher.rc" />

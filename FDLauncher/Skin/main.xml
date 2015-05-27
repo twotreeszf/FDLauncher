@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window size="866,614" bktrans="true" caption="0,0,0,614" roundcorner="2,1" xmlns="http://tempuri.org/skin.xsd">
+	<Font name="微软雅黑" size="25" default="true" />
+
+	<VerticalLayout bkcolor="#00FFFFFF" bkimage="file='main/bkg.png'">
+		<Container height="107"/>
+		<HorizontalLayout height="46">
+			<Container width="793"/>
+			<Button 
+				name="close" width="46" height="46" 
+				normalimage="file='main/close1.png'" hotimage="file='main/close2.png'" pushedimage="file='main/close2.png'"/>
+		</HorizontalLayout>
+		<Container height="340"/>
+		<VerticalLayout height="100">
+			<HorizontalLayout>
+				<Container width="53"/>
+				<VerticalLayout inset="40,0,40,0">
+					<Label name="message" textcolor="#FF000000" align="center|vcenter" padding="0,10,0,14"/>
+					<Container height="20">
+					<Progress 
+						name="progress_normal" visible="false"
+						bkimage="file='main\prog1.png' corner='10,10,10,10'" 
+						foreimage="file='main\prog2.png' corner='10,10,10,10'" 
+						min="0" max="140"
+						/>
+					<Progress 
+						name="progress_error" visible="false"
+						bkimage="file='main\prog1.png' corner='10,10,10,10'" 
+						foreimage="file='main\prog3.png' corner='10,10,10,10'" 
+						min="0" max="140"
+						/>
+					</Container>
+				</VerticalLayout>
+				<Container width="13"/>
+			</HorizontalLayout>			
+		</VerticalLayout>
+	</VerticalLayout>  
+</Window>

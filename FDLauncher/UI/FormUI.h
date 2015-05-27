@@ -142,42 +142,6 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 
-class CAnimatePanelUI : public CFormUI
-{
-public:
-	CAnimatePanelUI(DWORD dwAWHideFlag = AW_HOR_POSITIVE | AW_HIDE, 
-		DWORD dwAWShowFlag = AW_HOR_NEGATIVE, 
-		bool bSupportEsc = true);
-
-	virtual ~CAnimatePanelUI();
-
-	virtual LPCTSTR GetWindowClassName() const { return _T("AnimatePanel"); }
-
-public:
-	BEGIN_MSG_MAP(CAnimatePanelUI)
-		MSG_WM_SHOWWINDOW(OnShowWindow)
-		CHAIN_MSG_MAP(CFormUI)
-	END_MSG_MAP()
-
-	void OnShowWindow(BOOL bShow, UINT nStatus);
-	void SetTriggerBtn(COptionUI* pTriggerBtn);
-
-	BOOL GetAnimation();
-	void SetAnimation(BOOL bAnimation);
-
-protected:	
-	virtual void OnClose();
-
-protected:
-	DWORD           m_dwAWHideFlag;
-	DWORD           m_dwAWShowFlag;
-	DWORD           m_dwTime;
-	COptionUI*      m_pTriggerBtn;
-	BOOL            m_bAnimation;
-};
-
-//////////////////////////////////////////////////////////////////////////
-
 // 		LPCTSTR lpText,
 // 		LPCTSTR lpCaption,
 

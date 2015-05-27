@@ -12,6 +12,7 @@
 #include <atlsync.h>
 #include <atlwin.h>
 #include "INotificationCenter.h"
+#include <functional>
 
 //-------------------------------------------------------------------------
 
@@ -117,6 +118,7 @@ public:
     void postNotification(const CNotification* notificaton);
     void postNotification(const std::string& name);
     void postNotification(const std::string& name, const Json::Value& userInfo);
+	void postNotification(std::function<void()> func);
 
 private:
     inline bool _signalChannelExist(const CSignalChannel& channel);

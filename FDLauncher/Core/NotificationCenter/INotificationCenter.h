@@ -12,13 +12,15 @@
 
 #include "../Misc/FastDelegate/FastDelegate.h"
 #include "../JsonCpp/json.h"
+#include <functional>
 
 
 class CNotification
 {
 public:
-	const std::string     m_name;
-	const Json::Value    m_userInfo;
+	const std::string		m_name;
+	const Json::Value		m_userInfo;
+	std::function<void()>	m_func;
 
 public:
 	explicit CNotification(const std::string& name)
@@ -31,6 +33,12 @@ public:
 	explicit CNotification(const std::string& name, const Json::Value& userInfo)
 		: m_name(name)
 		, m_userInfo(userInfo)
+	{
+
+	}
+
+	explicit CNotification(std::function<void()> func)
+		: m_func(func)
 	{
 
 	}

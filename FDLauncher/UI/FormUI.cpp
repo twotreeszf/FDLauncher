@@ -722,63 +722,6 @@ CFormUI* CFormUIManager::FindForm(std::tr1::function<bool(CFormUI*)> pred)
 }
 
 //////////////////////////////////////////////////////////////////////////
-CAnimatePanelUI::CAnimatePanelUI(DWORD dwAWHideFlag, DWORD dwAWShowFlag, bool bSupportEsc) 
-	: CFormUI(bSupportEsc)
-	, m_dwAWHideFlag(dwAWHideFlag)
-	, m_dwAWShowFlag(dwAWShowFlag)
-	, m_dwTime(300)
-	, m_pTriggerBtn(NULL)
-	, m_bAnimation(TRUE)
-{
-	m_bShadowEnabled = false;
-}
-
-CAnimatePanelUI::~CAnimatePanelUI()
-{
-
-}
-
-void CAnimatePanelUI::SetTriggerBtn(COptionUI* pTriggerBtn)
-{
-	m_pTriggerBtn = pTriggerBtn;
-}
-
-BOOL CAnimatePanelUI::GetAnimation()
-{
-	return m_bAnimation;
-}
-
-void CAnimatePanelUI::SetAnimation(BOOL bAnimation)
-{
-	m_bAnimation = bAnimation;
-}
-
-void CAnimatePanelUI::OnClose()
-{	
-	if (m_pTriggerBtn != NULL && m_pTriggerBtn->IsSelected())
-		m_pTriggerBtn->Selected(false);
-
-	CFormUI::OnClose();
-}
-
-void CAnimatePanelUI::OnShowWindow(BOOL bShow, UINT nStatus)
-{
-	if(!m_bAnimation)
-	{
-		return;
-	}
-
-	if(bShow)
-	{
-		::AnimateWindow(m_hWnd, m_dwTime, m_dwAWShowFlag);
-	}	
-	else
-	{
-		::AnimateWindow(m_hWnd, m_dwTime, m_dwAWHideFlag);
-	}
-}
-
-//////////////////////////////////////////////////////////////////////////
 
 int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
 {

@@ -9,7 +9,8 @@
 #include "stdafx.h"
 #include "FDAppModule.h"
 #include "UI/FormUI.h"
-#include "UI/FDLauncherDlg/FDLauncherDlg.h"
+#include "UI/MainDlg/MainDlg.h"
+#include "Core/NotificationCenter/NotificationCenter.h"
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"
 
@@ -58,11 +59,16 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 		Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 		Gdiplus::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
 
-		FDLauncherDlg* about = new FDLauncherDlg();
-		about->Create(NULL);
-		about->ShowWindow(SW_SHOWNORMAL);
+		CNotificationCenter::defaultCenter().init(GetDesktopWindow());
+
+		CMainDlg* main = new CMainDlg();
+		main->Create(NULL);
+		main->ShowWindow(SW_SHOWNORMAL);
 
 		nRet = theLoop.Run();
+
+		CNotificationCenter::defaultCenter().uninit();
+
 		theLoop.RemoveMessageFilter(this);
 		_Module.RemoveMessageLoop();
 

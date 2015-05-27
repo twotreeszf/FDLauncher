@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 控件默认信息配置 -->
-<DefaultSkin>
-  <Font name="微软雅黑" size="12" default="true" />
-  <Default name="Button" value="textcolor=&quot;#FF000000&quot; disabledtextcolor=&quot;#FF959595&quot; normalimage=&quot;file='common/white_btn.png' source='0,0,106,35' corner='2,2,2,2'&quot; hotimage=&quot;file='common/white_btn.png' source='106,0,212,35' corner='2,2,2,2'&quot; pushedimage=&quot;file='common/white_btn.png' source='212,0,318,34' corner='2,2,2,2'&quot; disabledimage=&quot;file='common/white_btn.png' source='318,0,424,34' corner='2,2,2,2'&quot;"/>
-  <Default name="Edit" value="textcolor=&quot;#FF000000&quot; disabledtextcolor=&quot;#FFA7A6AA&quot; bkimage=&quot;file='common/edit_bg.png' source='0,0,258,23' corner='1,1,1,1'&quot;" />
-</DefaultSkin>

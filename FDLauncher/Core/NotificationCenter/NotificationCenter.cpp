@@ -106,21 +106,29 @@ void CNotificationCenter::removeObserver(const void* observer, const std::string
 void CNotificationCenter::sendNotification(const CNotification* notificaton)
 {
     ASSERT(notificaton);
-    ASSERT(notificaton->m_name.length());
+	ASSERT(notificaton->m_name.length() || notificaton->m_func);
 
-    std::vector<NotificationDelegate> delegates;
-    {
-        CSingleLock lock(&m_cs);
+	if (notificaton->m_func)
+	{
+		notificaton->m_func();
+	}
+	else
+	{
+		std::vector<NotificationDelegate> delegates;
+		{
+			CSingleLock lock(&m_cs);
 
-        for (std::list<CSignalChannel>::iterator it = m_signalChannels.begin(); it != m_signalChannels.end(); ++it)
-            if ((notificaton->m_name == it->m_notificationName))
-                delegates.push_back(it->m_closure.m_delegate);
-    }
-    
-    std::for_each(delegates.begin(), delegates.end(), [=](NotificationDelegate& item) 
-    { 
-        item(notificaton);
-    });
+			for (std::list<CSignalChannel>::iterator it = m_signalChannels.begin(); it != m_signalChannels.end(); ++it)
+				if ((notificaton->m_name == it->m_notificationName))
+					delegates.push_back(it->m_closure.m_delegate);
+		}
+
+		std::for_each(delegates.begin(), delegates.end(), [=](NotificationDelegate& item)
+		{
+			item(notificaton);
+		});
+	}
+
 
     delete notificaton;
 }
@@ -147,6 +155,13 @@ void CNotificationCenter::postNotification(const std::string& name, const Json::
     CNotification* pNotification = new CNotification(name, userInfo);
 
     postNotification(pNotification);
+}
+
+void CNotificationCenter::postNotification(std::function<void()> func)
+{
+	CNotification* pNotification = new CNotification(func);
+
+	postNotification(pNotification);
 }
 
 bool CNotificationCenter::_signalChannelExist(const CSignalChannel& channel)
