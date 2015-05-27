@@ -59,7 +59,7 @@ void CMainDlg::OnInit()
 	DUI_BIND_CONTROL_VAR(L"progress_error", m_progressError, CProgressUI);
 
 	CenterWindow();
-	this->SetWindowText(DUI_LOAD_STRING(STRID_APPNAME));
+	SetWindowText(DUI_LOAD_STRING(STRID_APPNAME));
 
 	m_asyncOpt = std::async([=]
 	{
@@ -90,6 +90,8 @@ void CMainDlg::_runLauncher()
 				m_state		= EnumState::CheckUpdate;
 
 				m_message->SetText(DUI_LOAD_STRING(STRID_DOWNLOADING));
+				m_progressNormal->SetVisible(true);
+				m_progressError->SetVisible(false);
 			});
 
 			BOOL haveUpdate = false;
@@ -109,8 +111,6 @@ void CMainDlg::_runLauncher()
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
 				m_state = EnumState::Downloading;
-				m_progressNormal->SetVisible(true);
-				m_progressError->SetVisible(false);
 			});
 
 			ret = _downloadPackage(url, UTF16ToUTF8(downloadPath));
@@ -212,6 +212,9 @@ void CMainDlg::_runLauncher()
 Exit0:
 	if (!ret)
 	{
+		if (m_isCancel)
+			return;
+
 		CNotificationCenter::defaultCenter().postNotification([=]
 		{
 			m_progressNormal->SetVisible(false);
@@ -238,7 +241,7 @@ Exit0:
 			}
 		});
 
-		Sleep(2000);
+		Sleep(5 * 1000);
 
 		CNotificationCenter::defaultCenter().postNotification([=]
 		{

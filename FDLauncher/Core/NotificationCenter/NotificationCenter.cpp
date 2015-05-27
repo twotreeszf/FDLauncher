@@ -40,7 +40,16 @@ CNotificationCenter& CNotificationCenter::defaultCenter()
 bool CNotificationCenter::init(HWND hwnd)
 {
     ASSERT(!m_poster.IsWindow());
-    return m_poster.Create(hwnd) != NULL;
+	bool ret = true;
+	{
+		ret = m_poster.Create(hwnd);
+		ERROR_CHECK_BOOL(ret);
+		
+		m_poster.ShowWindow(SW_HIDE);
+	}
+
+Exit0:
+	return ret;
 }
 
 bool CNotificationCenter::uninit()

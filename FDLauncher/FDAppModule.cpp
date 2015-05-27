@@ -62,7 +62,7 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 		CNotificationCenter::defaultCenter().init(GetDesktopWindow());
 
 		CMainDlg* main = new CMainDlg();
-		main->Create(NULL);
+		main->Create(GetDesktopWindow());
 		main->ShowWindow(SW_SHOWNORMAL);
 
 		nRet = theLoop.Run();
