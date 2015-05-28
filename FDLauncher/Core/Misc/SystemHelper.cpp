@@ -86,6 +86,21 @@ namespace SystemHelper
 	Exit0:
 		return ret;
 	}
+
+	BOOL isUnderXP()
+	{
+		OSVERSIONINFO OsInfo;
+		ZeroMemory(&OsInfo, sizeof(OSVERSIONINFO));
+		OsInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+		::GetVersionEx(&OsInfo);
+		if (OsInfo.dwMajorVersion < 6)
+		{
+			return TRUE;
+		}//非Vista以上版本
+
+		return FALSE;
+	}
+
 }
 
 //--------------------------------------------------------------------------         

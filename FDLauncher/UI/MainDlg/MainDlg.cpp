@@ -341,7 +341,7 @@ BOOL CMainDlg::_runInstall(const std::string& packagePath)
 	BOOL Ret = TRUE;
 	{
 		CPath path = UTF8ToUTF16(packagePath.c_str()).c_str();
-		HANDLE h = SystemHelper::shellExecute(path, L"/S", TRUE);
+		HANDLE h = SystemHelper::shellExecute(path, L"/S", !SystemHelper::isUnderXP());
 		ERROR_CHECK_BOOLEX(h, Ret = FALSE);
 
 		WaitForSingleObject(h, INFINITE);
