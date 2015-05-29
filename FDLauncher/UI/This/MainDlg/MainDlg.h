@@ -77,6 +77,7 @@ private:
 	BOOL _runInstall(const std::string& packagePath);
 	BOOL _launchMianApp();
 	BOOL _delayDeleteSelf();
+	BOOL _deleteSelfByHelperProcess();
 	bool _isCancel();
 };
 

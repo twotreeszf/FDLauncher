@@ -53,6 +53,12 @@
     <Filter Include="UI\This\MainDlg">
       <UniqueIdentifier>{10af4ef7-a2b4-434a-b749-a7c1d8db8e16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\This">
+      <UniqueIdentifier>{ff873c77-0ec2-46e1-bbfb-f546afd1d154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\This\CommandLineHandler">
+      <UniqueIdentifier>{3eee8854-f080-4f2b-aca3-20652841c613}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core\JsonCpp\json_valueiterator.inl">
@@ -261,6 +267,12 @@
     <ClInclude Include="UI\This\MainDlg\MainDlg.h">
       <Filter>UI\This\MainDlg</Filter>
     </ClInclude>
+    <ClInclude Include="Core\This\CommandLineHandler.h">
+      <Filter>Core\This\CommandLineHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\This\CommandLineDef.h">
+      <Filter>Core\This\CommandLineHandler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -400,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="UI\This\MainDlg\MainDlg.cpp">
       <Filter>UI\This\MainDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\This\CommandLineHandler.cpp">
+      <Filter>Core\This\CommandLineHandler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

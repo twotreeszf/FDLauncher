@@ -83,6 +83,16 @@ public:
 		return cmdlParamContent.size() ? TRUE : FALSE;
 	}
 
+	BOOL GetSwitchParam(LPCWSTR szSwitch, CString &param, BOOL bInorgeCase = TRUE)
+	{
+		ParamsVector params;
+		BOOL Ret = GetSwitchParam(szSwitch, params, bInorgeCase);
+		if (Ret)
+			param = params[0];
+
+		return Ret;
+	}
+
 	BOOL HasSwitch(LPCWSTR szSwitch, BOOL bInorgeCase = TRUE)
 	{
 		for (int i = 0; i < m_nArgNum; ++i)

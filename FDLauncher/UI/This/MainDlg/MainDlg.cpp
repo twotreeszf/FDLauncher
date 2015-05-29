@@ -20,6 +20,7 @@
 #include "../../../Core/Misc/MD5/MD5.h"
 #include "../../../Core/Misc/StringHelper.h"
 #include "../../../Core/NotificationCenter/NotificationCenter.h"
+#include "../../../Core/This/CommandLineDef.h"
 
 
 //-------------------------------------------------------------------------
@@ -140,6 +141,8 @@ void CMainDlg::_runLauncher()
 				m_progressNormal->SetValue(140);
 				m_progressError->SetValue(140);
 			});
+
+			_deleteSelfByHelperProcess();
 		}
 		// check update
 		else
@@ -361,6 +364,8 @@ BOOL CMainDlg::_launchMianApp()
 	BOOL Ret = TRUE;
 	{
 		CPath mainExePath = SystemHelper::getMainAppPath();
+		Ret = PathFileExists(mainExePath);
+		ERROR_CHECK_BOOL(Ret);
 		HANDLE h = SystemHelper::shellExecute(mainExePath, L"", FALSE);
 		ERROR_CHECK_BOOLEX(h, Ret = FALSE);
 		::CloseHandle(h);
@@ -385,6 +390,35 @@ BOOL CMainDlg::_delayDeleteSelf()
 		ERROR_CHECK_BOOL(Ret);
 
 		MoveFileEx(randomPath, NULL, MOVEFILE_DELAY_UNTIL_REBOOT);
+	}
+
+Exit0:
+	return Ret;
+}
+
+BOOL CMainDlg::_deleteSelfByHelperProcess()
+{
+	BOOL Ret = TRUE;
+	{
+		CPath self = SystemHelper::getModulePath();
+		CPath temp = SystemHelper::getTempPath();
+		CString random;
+		random.Format(L"%d.exe", time(NULL));
+		temp.Append(random);
+
+		Ret = CopyFile(self, temp, FALSE);
+		ERROR_CHECK_BOOL(Ret);
+
+		CString cmd;
+		cmd.Format(L"%s %s \"%s\" %s %d", 
+			CommandLine::DELETE_ME, 
+			CommandLine::PATH, self, 
+			CommandLine::PROCESS_ID, GetCurrentProcessId());
+
+		HANDLE h = SystemHelper::shellExecute(temp, cmd, FALSE);
+		ERROR_CHECK_BOOLEX(h, Ret = FALSE);
+
+		CloseHandle(h);
 	}
 
 Exit0:

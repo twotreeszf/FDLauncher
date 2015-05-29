@@ -127,6 +127,8 @@
     <ClInclude Include="Core\Misc\SystemHelper.h" />
     <ClInclude Include="Core\NotificationCenter\INotificationCenter.h" />
     <ClInclude Include="Core\NotificationCenter\NotificationCenter.h" />
+    <ClInclude Include="Core\This\CommandLineDef.h" />
+    <ClInclude Include="Core\This\CommandLineHandler.h" />
     <ClInclude Include="DUILib\downloadmgr.h" />
     <ClInclude Include="DUILib\FlashEventHandler.h" />
     <ClInclude Include="DUILib\ImageEx.h" />
@@ -188,6 +190,7 @@
     <ClCompile Include="Core\Misc\StringHelper.cpp" />
     <ClCompile Include="Core\Misc\SystemHelper.cpp" />
     <ClCompile Include="Core\NotificationCenter\NotificationCenter.cpp" />
+    <ClCompile Include="Core\This\CommandLineHandler.cpp" />
     <ClCompile Include="DUILib\ImageEx.cpp" />
     <ClCompile Include="DUILib\stb_image.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

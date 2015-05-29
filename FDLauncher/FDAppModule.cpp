@@ -11,6 +11,7 @@
 #include "UI/FormUI.h"
 #include "UI/This/MainDlg/MainDlg.h"
 #include "Core/NotificationCenter/NotificationCenter.h"
+#include "Core/This/CommandLineHandler.h"
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"
 
@@ -45,6 +46,8 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 	int nRet = 0;
 	{
 		m_commandLine.Init(lpstrCmdLine);
+		if (CommandLineHandler::handleCommandLine(&m_commandLine))
+			QUIT();
 
 		mutex = ::CreateMutex(NULL, TRUE, FD_SINGLE_MUTEX);
 		ASSERT(mutex);
