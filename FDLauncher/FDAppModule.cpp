@@ -19,7 +19,6 @@
 HRESULT CFDAppModule::Init(ATL::_ATL_OBJMAP_ENTRY* pObjMap, HINSTANCE hInstance, const GUID* pLibID /* = NULL */)
 {
 	CAppModule::Init(pObjMap, hInstance, pLibID);
-
 	m_uiResource.SetInstance(hInstance);
 
 #ifndef _DEBUG
@@ -45,11 +44,13 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 	HANDLE mutex = 0;
 	int nRet = 0;
 	{
+		m_commandLine.Init(lpstrCmdLine);
+
 		mutex = ::CreateMutex(NULL, TRUE, FD_SINGLE_MUTEX);
 		ASSERT(mutex);
 		BOOL bHasRun = ERROR_ALREADY_EXISTS == ::GetLastError();
 		if (bHasRun)
-			goto Exit0;
+			QUIT();
 
 		CMessageLoop theLoop;
 		theLoop.AddMessageFilter(this);

@@ -313,8 +313,11 @@ void CMainDlg::_downloadProgress(double total, double now, double speed)
 {
 	CNotificationCenter::defaultCenter().postNotification([=]
 	{
-		m_progressNormal->SetValue(now * 100.0 / total);
-		m_progressError->SetValue(now * 100.0 / total);
+		int value = now * 100.0 / total;
+		value = max(value, 4);
+
+		m_progressNormal->SetValue(value);
+		m_progressError->SetValue(value);
 	});
 }
 

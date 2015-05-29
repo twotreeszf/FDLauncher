@@ -60,9 +60,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FDLauncher.h">
-      <Filter>SupportFiles</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>SupportFiles</Filter>
     </ClInclude>
@@ -264,11 +261,14 @@
     <ClInclude Include="UI\Dlg\IrregularForm.h">
       <Filter>UI\Dlg</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Misc\CommandLine.h">
+      <Filter>Core\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>SupportFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FDLauncher.cpp">
-      <Filter>SupportFiles</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>SupportFiles</Filter>
     </ClCompile>
@@ -409,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="UI\Dlg\IrregularForm.cpp">
       <Filter>UI\Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>SupportFiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 #define __FDAPPMODULE_H__
          
 #include <GdiPlus.h>
+#include "Core/Misc/CommandLine.h"
 
 #pragma comment(lib, "gdiplus.lib")
 using namespace Gdiplus;
@@ -22,11 +23,12 @@ class CFDAppModule
 {
 public:
 	HRESULT Init(ATL::_ATL_OBJMAP_ENTRY* pObjMap, HINSTANCE hInstance, const GUID* pLibID = NULL);
-	int  Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT);
+	int  Run(LPTSTR lpstrCmdLine = NULL, int nCmdShow = SW_SHOWDEFAULT);
 	void Exit();
 	void Term();
 
 	DuiLib::CResourceUI* GetResource();
+	CCommandLineOption*	 GetComandLine();
 
 public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
@@ -34,6 +36,7 @@ public:
 private:
 	DuiLib::CResourceUI	m_uiResource;
 	HRSRC				m_hSkinResource;
+	CCommandLineOption	m_commandLine;
 };
 
 //--------------------------------------------------------------------------

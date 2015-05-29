@@ -114,6 +114,7 @@
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostDownload.h" />
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostRequest.h" />
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostUpload.h" />
+    <ClInclude Include="Core\Misc\CommandLine.h" />
     <ClInclude Include="Core\Misc\CrossPlatformConfig.h" />
     <ClInclude Include="Core\Misc\FastDelegate\FastDelegate.h" />
     <ClInclude Include="Core\Misc\FastDelegate\FastDelegateBind.h" />
@@ -153,7 +154,7 @@
     <ClInclude Include="DUILib\UIWebBrowser.h" />
     <ClInclude Include="DUILib\WebBrowserEventHandler.h" />
     <ClInclude Include="FDAppModule.h" />
-    <ClInclude Include="FDLauncher.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -222,7 +223,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="FDAppModule.cpp" />
-    <ClCompile Include="FDLauncher.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

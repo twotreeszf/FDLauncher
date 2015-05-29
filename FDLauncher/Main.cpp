@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "FDLauncher.h"
+#include "Main.h"
 #include "FDAppModule.h"
 
 CFDAppModule _Module;
