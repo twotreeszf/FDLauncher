@@ -21,6 +21,7 @@ namespace SystemHelper
 	HANDLE	shellExecute(const CPath& exePath, const CString& params, BOOL runUAC);
 	BOOL	getFileVersion(const CString& filePath, CString& version);
 	BOOL	isUnderXP();
+	BOOL	waitProcess(DWORD processId);
 }
 
 //--------------------------------------------------------------------------

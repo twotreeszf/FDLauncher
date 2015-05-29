@@ -3,7 +3,6 @@
 #include <functional>
 #include <atlwin.h>
 #include <atlcrack.h>
-#include "Ctrl\UIBuilderCallback.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -60,7 +59,6 @@ public:
 	virtual LPCTSTR GetFormName()const = 0;
 	virtual LPCTSTR GetWindowClassName() const { return _T("FormUI"); }		
 	virtual LPCTSTR GetSkinFile() const { return _T("formui.xml"); }
-	virtual DuiLib::IDialogBuilderCallback* GetDialogBuilderCallback(){ return &m_builder; }
 
 	bool IsRequiredInvoke() const;
 	void Invoke(InvokeDelegate fn);
@@ -90,7 +88,6 @@ protected:
     friend class CFormUIManager;
 
 	CPaintManagerUI    m_paintManager;
-	UIBuilderCallback  m_builder;
 
 	bool			   m_bShadowEnabled;
 	CShadowWnd*		   m_pShadowWnd;
@@ -139,21 +136,6 @@ public:
 	CFormUI* GetLastVisibleForm();
 	CFormUI* FindForm(std::tr1::function<bool(CFormUI*)> pred);
 };
-
-//////////////////////////////////////////////////////////////////////////
-
-// 		LPCTSTR lpText,
-// 		LPCTSTR lpCaption,
-
-int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType);
-
-// lpTipText 是副标题
-int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpTipText, LPCTSTR lpCaption, UINT uType);
-
-int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpTipText, LPCTSTR lpCaption, LPCTSTR lpOKBtnText, LPCTSTR lpCancelBtnText, UINT uType);
-
-
-
 
 enum MessageType
 {

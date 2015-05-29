@@ -9,7 +9,7 @@
 #ifndef __MAINDLG_H__
 #define __MAINDLG_H__
 
-#include "../Dlg/IrregularForm.h"
+#include "../../Dlg/IrregularForm.h"
 #include <future>
 
 //-------------------------------------------------------------------------

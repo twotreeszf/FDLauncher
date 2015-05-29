@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "FDAppModule.h"
 #include "UI/FormUI.h"
-#include "UI/MainDlg/MainDlg.h"
+#include "UI/This/MainDlg/MainDlg.h"
 #include "Core/NotificationCenter/NotificationCenter.h"
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"

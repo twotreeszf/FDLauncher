@@ -9,17 +9,17 @@
 #include "stdafx.h"
 #include "MainDlg.h"
 
-#include "../../Core/Misc/SystemHelper.h"
-#include "../../Core/Misc/StringConv/StringConv.h"
+#include "../../../Core/Misc/SystemHelper.h"
+#include "../../../Core/Misc/StringConv/StringConv.h"
 #include <time.h>
-#include "../../Core/LibcRULHttp/LibCurlHttpGetRequest.h"
-#include "../../Core/LibcRULHttp/LibCurlHttpGetDownload.h"
-#include "../../Core/JsonCpp/json.h"
-#include "../../Core/Misc/FastDelegate/FastDelegate.h"
-#include "../../Core/Misc/FileHash.h"
-#include "../../Core/Misc/MD5/MD5.h"
-#include "../../Core/Misc/StringHelper.h"
-#include "../../Core/NotificationCenter/NotificationCenter.h"
+#include "../../../Core/LibcRULHttp/LibCurlHttpGetRequest.h"
+#include "../../../Core/LibcRULHttp/LibCurlHttpGetDownload.h"
+#include "../../../Core/JsonCpp/json.h"
+#include "../../../Core/Misc/FastDelegate/FastDelegate.h"
+#include "../../../Core/Misc/FileHash.h"
+#include "../../../Core/Misc/MD5/MD5.h"
+#include "../../../Core/Misc/StringHelper.h"
+#include "../../../Core/NotificationCenter/NotificationCenter.h"
 
 
 //-------------------------------------------------------------------------

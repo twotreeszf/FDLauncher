@@ -47,8 +47,11 @@
     <Filter Include="Core\Misc\MD5">
       <UniqueIdentifier>{7884a07f-c996-41a5-8c64-266ef6e00bd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\MainDlg">
-      <UniqueIdentifier>{d2c9a0c7-f6b4-4409-8e88-b961664cee32}</UniqueIdentifier>
+    <Filter Include="UI\This">
+      <UniqueIdentifier>{e62248e4-d4df-4c0a-b701-784b98a60efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\This\MainDlg">
+      <UniqueIdentifier>{10af4ef7-a2b4-434a-b749-a7c1d8db8e16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,17 +156,8 @@
     <ClInclude Include="UI\Ctrl\ShadowWnd.h">
       <Filter>UI\Ctrl</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Ctrl\TitleBar.h">
-      <Filter>UI\Ctrl</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\messagebox.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="FDAppModule.h">
       <Filter>SupportFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\Ctrl\UIBuilderCallback.h">
-      <Filter>UI\Ctrl</Filter>
     </ClInclude>
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpBase.h">
       <Filter>Core\LibcRULHttp</Filter>
@@ -255,9 +249,6 @@
     <ClInclude Include="Core\Misc\MD5\MD5.h">
       <Filter>Core\Misc\MD5</Filter>
     </ClInclude>
-    <ClInclude Include="UI\MainDlg\MainDlg.h">
-      <Filter>UI\MainDlg</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Dlg\IrregularForm.h">
       <Filter>UI\Dlg</Filter>
     </ClInclude>
@@ -266,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="Main.h">
       <Filter>SupportFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\This\MainDlg\MainDlg.h">
+      <Filter>UI\This\MainDlg</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,14 +344,8 @@
     <ClCompile Include="UI\FormUI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\Ctrl\TitleBar.cpp">
-      <Filter>UI\Ctrl</Filter>
-    </ClCompile>
     <ClCompile Include="FDAppModule.cpp">
       <Filter>SupportFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\Ctrl\UIBuilderCallback.cpp">
-      <Filter>UI\Ctrl</Filter>
     </ClCompile>
     <ClCompile Include="Core\LibcRULHttp\LibCurlHttpBase.cpp">
       <Filter>Core\LibcRULHttp</Filter>
@@ -404,14 +392,14 @@
     <ClCompile Include="Core\Misc\MD5\MD5.cpp">
       <Filter>Core\Misc\MD5</Filter>
     </ClCompile>
-    <ClCompile Include="UI\MainDlg\MainDlg.cpp">
-      <Filter>UI\MainDlg</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Dlg\IrregularForm.cpp">
       <Filter>UI\Dlg</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>SupportFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\This\MainDlg\MainDlg.cpp">
+      <Filter>UI\This\MainDlg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "FormUI.h"
-#include "messagebox.h"
 #include <atldlgs.h>
 #include "../resource.h"
 #include "Ctrl/ShadowWnd.h"
@@ -258,7 +257,7 @@ int CFormUI::OnCreate( LPCREATESTRUCT lpCreateStruct )
 
 	m_paintManager.Init(m_hWnd, _Module.GetResource());
 	CDialogBuilder builder;
-	CControlUI* pRoot = builder.Create(_Module.GetResource(), this->GetSkinFile(), (UINT)0, GetDialogBuilderCallback(), &m_paintManager);
+	CControlUI* pRoot = builder.Create(_Module.GetResource(), this->GetSkinFile(), (UINT)0, NULL, &m_paintManager);
 	ASSERT(pRoot && "Failed to parse XML");
 	if(pRoot == NULL)
 		return -1;	
@@ -719,33 +718,4 @@ CFormUI* CFormUIManager::FindForm(std::tr1::function<bool(CFormUI*)> pred)
 	}	
 
 	return NULL;
-}
-
-//////////////////////////////////////////////////////////////////////////
-
-int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
-{
- 	CMessageBox* messageBox = new CMessageBox(lpCaption, uType);
-	messageBox->SetContentText(lpText);
-	messageBox->SetTipText(L"");
-
- 	return messageBox->ShowModal(hWnd, lpCaption);
-}
-
-int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpTipText, LPCTSTR lpCaption, UINT uType)
-{
-	CMessageBox* messageBox = new CMessageBox(lpCaption, uType);
-	messageBox->SetTipText(lpTipText);
-	messageBox->SetContentText(lpText);
-	return messageBox->ShowModal(hWnd, lpCaption);
-}
-
-int ShowMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpTipText, LPCTSTR lpCaption, LPCTSTR lpOKBtnText, LPCTSTR lpCancelBtnText, UINT uType)
-{
-	CMessageBox* messageBox = new CMessageBox(lpCaption, uType);
-	messageBox->SetTipText(lpTipText);
-	messageBox->SetContentText(lpText);
-	messageBox->SetOKBtnText(lpOKBtnText);
-	messageBox->SetCancelBtnText(lpCancelBtnText);
-	return messageBox->ShowModal(hWnd, lpCaption);
 }

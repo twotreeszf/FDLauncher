@@ -101,6 +101,22 @@ namespace SystemHelper
 		return FALSE;
 	}
 
+	BOOL waitProcess(DWORD processId)
+	{
+		BOOL Ret = TRUE;
+		{
+			HANDLE h = OpenProcess(SYNCHRONIZE, FALSE, processId);
+			ERROR_CHECK_BOOLEX(h, Ret = FALSE);
+
+			Ret = (WAIT_OBJECT_0 == WaitForSingleObject(h, INFINITE));
+			ERROR_CHECK_BOOL(Ret);
+
+			CloseHandle(h);
+		}
+
+	Exit0:
+		return Ret;
+	}
 }
 
 //--------------------------------------------------------------------------         
