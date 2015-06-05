@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Window size="866,614" bktrans="true" caption="0,0,0,614" roundcorner="2,1" xmlns="http://tempuri.org/skin.xsd">
+<Window size="866,614" mininfo="866,614" maxinfo="866,614" caption="0,0,0,614" xmlns="http://tempuri.org/skin.xsd">
 	<Font name="微软雅黑" size="25" default="true" />
 
-	<VerticalLayout bkcolor="#00FFFFFF" bkimage="file='main/bkg.png'">
+	<VerticalLayout bkimage="file='main/bkg.png'">
 		<Container height="107"/>
 		<HorizontalLayout height="46">
 			<Container width="793"/>
@@ -15,7 +15,7 @@
 			<HorizontalLayout>
 				<Container width="53"/>
 				<VerticalLayout inset="40,0,40,0">
-					<Label name="message" textcolor="#FF000000" align="center|vcenter" padding="0,10,0,14"/>
+					<Label name="message" align="center|vcenter" padding="0,10,0,14"/>
 					<Container height="20">
 					<Progress 
 						name="progress_normal" visible="false"

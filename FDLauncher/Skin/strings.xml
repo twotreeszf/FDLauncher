@@ -15,5 +15,6 @@
 		<string name="STRID_UPDATTING" 				value="正在更新到版本%s..." />
 		<string name="STRID_UPDATE_FAIL" 			value="更新失败" />
 		<string name="STRID_ERROR_CODE" 			value=",错误码:" />
+		<string name="STRID_NO_ENOUGH_SPACE" 		value="磁盘空间不足，请确保C盘有1.2G以上可用空间" />
     </Group>
 </StringResources>

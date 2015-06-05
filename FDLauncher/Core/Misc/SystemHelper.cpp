@@ -117,6 +117,21 @@ namespace SystemHelper
 	Exit0:
 		return Ret;
 	}
+
+	BOOL getDiskFreeSpace(LPCWSTR path, UInt64& space)
+	{
+		BOOL Ret = TRUE;
+		{
+			ULARGE_INTEGER free = { 0 };
+			Ret = GetDiskFreeSpaceEx(path, NULL, NULL, &free);
+			ERROR_CHECK_BOOL(Ret);
+
+			space = free.QuadPart;
+		}
+		
+	Exit0:
+		return Ret;
+	}
 }
 
 //--------------------------------------------------------------------------         

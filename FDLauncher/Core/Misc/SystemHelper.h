@@ -22,6 +22,7 @@ namespace SystemHelper
 	BOOL	getFileVersion(const CString& filePath, CString& version);
 	BOOL	isUnderXP();
 	BOOL	waitProcess(DWORD processId);
+	BOOL	getDiskFreeSpace(LPCWSTR path, UInt64& space);
 }
 
 //--------------------------------------------------------------------------

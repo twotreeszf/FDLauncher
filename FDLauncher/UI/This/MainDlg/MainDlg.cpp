@@ -88,6 +88,17 @@ void CMainDlg::_runLauncher()
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
 				m_runType	= EnumRunType::Install;
+				m_state		= EnumState::CheckEnv;
+			});
+
+			UInt64 freeSpace = 0;
+			ret = SystemHelper::getDiskFreeSpace(L"C:", freeSpace);
+			ERROR_CHECK_BOOL(ret);
+			ret = (freeSpace > (1.2 * 1024.0 * 1024.0 * 1024.0));
+			ERROR_CHECK_BOOL(ret);
+
+			CNotificationCenter::defaultCenter().postNotification([=]
+			{
 				m_state		= EnumState::CheckUpdate;
 
 				m_message->SetText(DUI_LOAD_STRING(STRID_DOWNLOADING));
@@ -225,7 +236,13 @@ Exit0:
 
 			CString message;
 			if (EnumRunType::Install == m_runType)
-				message = DUI_LOAD_STRING(STRID_DOWNLOAD_FAIL);
+			{
+				if (EnumState::CheckEnv == m_state)
+					message = DUI_LOAD_STRING(STRID_NO_ENOUGH_SPACE);
+				else
+					message = DUI_LOAD_STRING(STRID_DOWNLOAD_FAIL);
+			}
+				
 			else
 				message = DUI_LOAD_STRING(STRID_UPDATE_FAIL);
 
@@ -240,11 +257,10 @@ Exit0:
 				EnumState::Installing == m_state))
 			{
 				m_message->SetText(message);
-				// m_message->SetTextColor()
 			}
 		});
 
-		Sleep(5 * 1000);
+		Sleep(10 * 1000);
 
 		CNotificationCenter::defaultCenter().postNotification([=]
 		{

@@ -22,7 +22,7 @@ CIrregularForm::~CIrregularForm()
 
 void CIrregularForm::OnInit()
 {
-	ModifyStyleEx(0, WS_EX_LAYERED);
+	ModifyStyleEx(WS_THICKFRAME, WS_EX_LAYERED);
 }
 
 LRESULT CIrregularForm::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)

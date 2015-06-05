@@ -32,6 +32,7 @@ private:
 		enum type
 		{
 			None = 0,
+			CheckEnv,
 			CheckUpdate,
 			Downloading,
 			Verfiying,
