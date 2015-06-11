@@ -11,8 +11,8 @@
 
 #include "CrossPlatformConfig.h"
 
-#define LOG_ERROR		void(0)
-#define LOG_INFO		void(0)
+#define LOG_ERROR(msg)	LOG(ERROR) << msg << std::endl
+#define LOG_INFO(msg)	LOG(INFO) << msg << std::endl
 
 //---------------------------------------------------------------------------
 #if defined(_DEBUG) && !defined(DISABLE_ASSERT)

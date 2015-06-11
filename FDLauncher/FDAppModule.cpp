@@ -12,6 +12,8 @@
 #include "UI/This/MainDlg/MainDlg.h"
 #include "Core/NotificationCenter/NotificationCenter.h"
 #include "Core/This/CommandLineHandler.h"
+#include "Core/Misc/SystemHelper.h"
+#include "Core/Misc/StringConv/StringConv.h"
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"
 
@@ -45,10 +47,29 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 	HANDLE mutex = 0;
 	int nRet = 0;
 	{
+		// init log
+		CPath logFile = SystemHelper::getTempPath();
+		logFile.Append(L"FDLog");
+		logFile.AddBackslash();
+		CreateDirectory(logFile, NULL);
+
+		google::SetLogDestination(google::GLOG_INFO, UTF16ToGBK(logFile).c_str());
+		google::SetLogDestination(google::GLOG_WARNING, UTF16ToGBK(logFile).c_str());
+		google::SetLogDestination(google::GLOG_ERROR, UTF16ToGBK(logFile).c_str());
+		google::SetLogDestination(google::GLOG_FATAL, UTF16ToGBK(logFile).c_str());
+
+		FLAGS_alsologtostderr = true;
+		FLAGS_minloglevel = google::GLOG_INFO;
+		FLAGS_logbufsecs = 0;
+
+		google::InitGoogleLogging("FDL");
+
+		// process command line
 		m_commandLine.Init(lpstrCmdLine);
 		if (CommandLineHandler::handleCommandLine(&m_commandLine))
 			QUIT();
 
+		// run app
 		mutex = ::CreateMutex(NULL, TRUE, FD_SINGLE_MUTEX);
 		ASSERT(mutex);
 		BOOL bHasRun = ERROR_ALREADY_EXISTS == ::GetLastError();
@@ -80,6 +101,7 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 	}
 
 Exit0:
+	google::ShutdownGoogleLogging();
 	::CloseHandle(mutex);
 	return nRet;
 }

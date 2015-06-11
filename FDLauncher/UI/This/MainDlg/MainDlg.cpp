@@ -44,6 +44,8 @@ CMainDlg::~CMainDlg()
 
 void CMainDlg::onClickClose(TNotifyUI& msg, BOOL& bHandled)
 {
+	TRACE_STACK;
+
 	m_isCancel = true;
 	m_asyncOpt.wait();
 	m_isCancel = false;
@@ -53,6 +55,8 @@ void CMainDlg::onClickClose(TNotifyUI& msg, BOOL& bHandled)
 
 void CMainDlg::OnInit()
 {
+	TRACE_STACK;
+
 	__super::OnInit();
 
 	DUI_BIND_CONTROL_VAR(L"message", m_message, CTextUI);
@@ -64,18 +68,23 @@ void CMainDlg::OnInit()
 
 	m_asyncOpt = std::async([=]
 	{
+		TRACE_STACK;
 		this->_runLauncher();
 	});
 }
 
 void CMainDlg::OnClose()
 {
+	TRACE_STACK;
+
 	__super::OnClose();
 	_Module.Exit();
 }
 
 void CMainDlg::_runLauncher()
 {
+	TRACE_STACK;
+
 	BOOL ret = TRUE;
 	{
 		// check need install
@@ -282,6 +291,8 @@ Exit0:
 
 BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate, std::string& version, std::string& url, std::string& md5)
 {
+	TRACE_STACK;
+
 	BOOL ret = EC_OK;
 	{
 		CString queryUrl;
@@ -314,6 +325,8 @@ Exit0:
 
 BOOL CMainDlg::_downloadPackage(const std::string& url, const std::string& downloadPath)
 {
+	TRACE_STACK;
+
 	BOOL Ret = TRUE;
 	{
 		LibCurl::CHttpGetDownload download;
@@ -321,6 +334,8 @@ BOOL CMainDlg::_downloadPackage(const std::string& url, const std::string& downl
 		download.setCancelDelegate(fastdelegate::bind(&CMainDlg::_isCancel, this));
 
 		ErrorCode ec = download.downloadFile(url.c_str(), downloadPath);
+		if (EC_OK != ec)
+			DeleteFile(UTF8ToUTF16(downloadPath.c_str()).c_str());
 		ERROR_CHECK_BOOLEX(EC_OK == ec, Ret = FALSE);
 	}
 Exit0:
@@ -342,6 +357,8 @@ void CMainDlg::_downloadProgress(double total, double now, double speed)
 
 BOOL CMainDlg::_verifyPackage(const std::string& downloadPath, const std::string& packageMd5)
 {
+	TRACE_STACK;
+
 	BOOL Ret = TRUE;
 	{
 		CFileHash<MD5> fileMd5;
@@ -360,6 +377,8 @@ Exit0:
 
 BOOL CMainDlg::_runInstall(const std::string& packagePath)
 {
+	TRACE_STACK;
+
 	BOOL Ret = TRUE;
 	{
 		CPath path = UTF8ToUTF16(packagePath.c_str()).c_str();
@@ -377,6 +396,8 @@ Exit0:
 
 BOOL CMainDlg::_launchMianApp()
 {
+	TRACE_STACK;
+
 	BOOL Ret = TRUE;
 	{
 		CPath mainExePath = SystemHelper::getMainAppPath();
@@ -395,6 +416,8 @@ Exit0:
 
 BOOL CMainDlg::_delayDeleteSelf()
 {
+	TRACE_STACK;
+
 	BOOL Ret = TRUE;
 	{
 		CPath currentPath = SystemHelper::getModulePath();
@@ -414,6 +437,8 @@ Exit0:
 
 BOOL CMainDlg::_deleteSelfByHelperProcess()
 {
+	TRACE_STACK;
+
 	BOOL Ret = TRUE;
 	{
 		CPath self = SystemHelper::getModulePath();

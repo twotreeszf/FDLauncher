@@ -71,4 +71,9 @@ using namespace DuiLib;
 #include "FDAppModule.h"
 #include "Resource.h"
 
+#define GLOG_NO_ABBREVIATED_SEVERITIES
+#include "glog/logging.h"
+#include "glog/raw_logging.h"
+#include "Core/Misc/TraceStack/TraceStack.h"
+
 extern CFDAppModule _Module;

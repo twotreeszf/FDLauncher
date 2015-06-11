@@ -59,6 +59,9 @@
     <Filter Include="Core\This\CommandLineHandler">
       <UniqueIdentifier>{3eee8854-f080-4f2b-aca3-20652841c613}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Misc\TrackStack">
+      <UniqueIdentifier>{b1b1c108-0c73-42eb-b1a2-19d9fd727f57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core\JsonCpp\json_valueiterator.inl">
@@ -273,6 +276,9 @@
     <ClInclude Include="Core\This\CommandLineDef.h">
       <Filter>Core\This\CommandLineHandler</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Misc\TraceStack\TraceStack.h">
+      <Filter>Core\Misc\TrackStack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -415,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="Core\This\CommandLineHandler.cpp">
       <Filter>Core\This\CommandLineHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Misc\TraceStack\TraceStack.cpp">
+      <Filter>Core\Misc\TrackStack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
