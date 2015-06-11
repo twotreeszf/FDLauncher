@@ -100,7 +100,7 @@
     do {																	\
     if (!(exp))			    												\
         {																	\
-        X_ASSERT(!"ERROR_CHECK_BOOLEX" #exp);							\
+        X_ASSERT(!"ERROR_CHECK_BOOLEX" #exp);								\
         exp1;															    \
         goto Exit0;														    \
         }																	\

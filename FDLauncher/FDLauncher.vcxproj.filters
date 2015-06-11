@@ -62,6 +62,9 @@
     <Filter Include="Core\Misc\TrackStack">
       <UniqueIdentifier>{b1b1c108-0c73-42eb-b1a2-19d9fd727f57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Misc\CrashReport">
+      <UniqueIdentifier>{56c3c45b-b4f2-41b2-83e9-64f65b648bbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Core\JsonCpp\json_valueiterator.inl">
@@ -278,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="Core\Misc\TraceStack\TraceStack.h">
       <Filter>Core\Misc\TrackStack</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Misc\CrashReport\CrashReport.h">
+      <Filter>Core\Misc\CrashReport</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

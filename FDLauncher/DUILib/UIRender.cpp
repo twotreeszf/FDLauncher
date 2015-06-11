@@ -1182,10 +1182,21 @@ void CRenderEngine::DrawText(HDC hDC, CPaintManagerUI* pManager, RECT& rc, LPCTS
     ASSERT(::GetObjectType(hDC)==OBJ_DC || ::GetObjectType(hDC)==OBJ_MEMDC);
     if( pstrText == NULL || pManager == NULL ) return;
     ::SetBkMode(hDC, TRANSPARENT);
-    ::SetTextColor(hDC, RGB(GetBValue(dwTextColor), GetGValue(dwTextColor), GetRValue(dwTextColor)));
-    HFONT hOldFont = (HFONT)::SelectObject(hDC, pManager->GetFont(iFont));
-    ::DrawText(hDC, pstrText, -1, &rc, uStyle | DT_NOPREFIX);
-    ::SelectObject(hDC, hOldFont);
+
+	Gdiplus::Graphics g(hDC);
+	Gdiplus::Color color;
+	color.SetValue(dwTextColor);
+	Gdiplus::SolidBrush brush(color);
+
+	Gdiplus::Font font(hDC, pManager->GetFont(iFont));
+
+	Gdiplus::PointF p(rc.left, rc.top);
+	Gdiplus::RectF rect;
+	g.MeasureString(pstrText, wcslen(pstrText), &font, p, &rect);
+
+	// todo: 目前强制居中, 还需要支持其他对其模式
+	Gdiplus::PointF origin(rc.left + ((rc.right - rc.left - rect.Width) / 2), rc.top + (rc.bottom - rc.top - rect.Height) / 2);
+	g.DrawString(pstrText, wcslen(pstrText), &font, origin, &brush);
 }
 
 void CRenderEngine::DrawHtmlText(HDC hDC, CPaintManagerUI* pManager, RECT& rc, LPCTSTR pstrText, DWORD dwTextColor, RECT* prcLinks, CStdString* sLinks, int& nLinkRects, UINT uStyle)

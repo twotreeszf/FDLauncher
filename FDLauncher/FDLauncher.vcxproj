@@ -115,6 +115,7 @@
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostRequest.h" />
     <ClInclude Include="Core\LibcRULHttp\LibCurlHttpPostUpload.h" />
     <ClInclude Include="Core\Misc\CommandLine.h" />
+    <ClInclude Include="Core\Misc\CrashReport\CrashReport.h" />
     <ClInclude Include="Core\Misc\CrossPlatformConfig.h" />
     <ClInclude Include="Core\Misc\FastDelegate\FastDelegate.h" />
     <ClInclude Include="Core\Misc\FastDelegate\FastDelegateBind.h" />

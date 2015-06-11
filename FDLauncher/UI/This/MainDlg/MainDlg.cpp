@@ -171,6 +171,11 @@ void CMainDlg::_runLauncher()
 			{
 				m_runType = EnumRunType::Update;
 				m_state = EnumState::CheckUpdate;
+
+				m_message->SetText(DUI_LOAD_STRING(STRID_DOWNLOADING));
+				m_progressNormal->SetVisible(true);
+				m_progressError->SetVisible(false);
+
 			});
 
 			CString currentVersion;
@@ -190,7 +195,7 @@ void CMainDlg::_runLauncher()
 				{
 					m_state = EnumState::Downloading;
 					CString message;
-					message.Format(DUI_LOAD_STRING(STRID_UPDATTING), version);
+					message.Format(DUI_LOAD_STRING(STRID_UPDATTING), UTF8ToUTF16(version.c_str()).c_str());
 					m_message->SetText(message);
 				});
 
@@ -298,11 +303,15 @@ BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate,
 		CString queryUrl;
 		queryUrl.Format(L"http://apiv4.fudaodashi.com/index.php?r=Upgrade/info&version=%s", UTF8ToUTF16(currentVersion.c_str()).c_str());
 
+		LOG(INFO) << "request url;" << queryUrl << std::endl;
+
 		LibCurl::CHttpGetRequest get;
 		ErrorCode ec = get.requestURL(UTF16ToUTF8(queryUrl).c_str(), 5);
 		ERROR_CHECK_BOOLEX(EC_OK == ec, ret = FALSE);
 
 		const std::string& recvData = get.getRecvData();
+		LOG(INFO) << "response json;" << recvData << std::endl;
+
 		Json::Value recvJson;
 		ret = Json::Reader().parse(recvData, recvJson);
 		ERROR_CHECK_BOOL(ret);
@@ -334,6 +343,7 @@ BOOL CMainDlg::_downloadPackage(const std::string& url, const std::string& downl
 		download.setCancelDelegate(fastdelegate::bind(&CMainDlg::_isCancel, this));
 
 		ErrorCode ec = download.downloadFile(url.c_str(), downloadPath);
+
 		if (EC_OK != ec)
 			DeleteFile(UTF8ToUTF16(downloadPath.c_str()).c_str());
 		ERROR_CHECK_BOOLEX(EC_OK == ec, Ret = FALSE);
@@ -368,6 +378,8 @@ BOOL CMainDlg::_verifyPackage(const std::string& downloadPath, const std::string
 		std::string downloadMd5 = StringHelper::ByteBufferToHexString(result, 16);
 
 		Ret = (StringHelper::stricmp(packageMd5.c_str(), downloadMd5.c_str()) == 0);
+		LOG(INFO) << "return md5:" << packageMd5 << std::endl;
+		LOG(INFO) << "real md5" << downloadMd5 << std::endl;
 		ERROR_CHECK_BOOL(Ret);
 	}
 

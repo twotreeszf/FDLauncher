@@ -14,6 +14,7 @@
 #include "Core/This/CommandLineHandler.h"
 #include "Core/Misc/SystemHelper.h"
 #include "Core/Misc/StringConv/StringConv.h"
+#include "Core/Misc/CrashReport/CrashReport.h"
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"
 
@@ -47,12 +48,15 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 	HANDLE mutex = 0;
 	int nRet = 0;
 	{
-		// init log
-		CPath logFile = SystemHelper::getTempPath();
-		logFile.Append(L"FDLog");
-		logFile.AddBackslash();
-		CreateDirectory(logFile, NULL);
+		CPath logFolder = SystemHelper::getTempPath();
+		logFolder.Append(L"FDLog");
+		logFolder.AddBackslash();
+		CreateDirectory(logFolder, NULL);
 
+		CCrashReport::Instance().Init(logFolder);
+
+		// init log
+		CPath logFile = logFolder;
 		google::SetLogDestination(google::GLOG_INFO, UTF16ToGBK(logFile).c_str());
 		google::SetLogDestination(google::GLOG_WARNING, UTF16ToGBK(logFile).c_str());
 		google::SetLogDestination(google::GLOG_ERROR, UTF16ToGBK(logFile).c_str());
