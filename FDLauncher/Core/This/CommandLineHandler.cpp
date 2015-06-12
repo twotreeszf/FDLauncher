@@ -31,6 +31,18 @@ namespace CommandLineHandler
 				return TRUE;
 			}
 		}
+		else if (commandLine->HasSwitch(CommandLine::WAIT_EXIT))
+		{
+			CString processId;
+			commandLine->GetSwitchParam(CommandLine::PROCESS_ID, processId);
+
+			if (processId.GetLength())
+			{
+				SystemHelper::waitProcess(_wtoi(processId));
+				return FALSE;
+			}
+
+		}
 
 		return FALSE;
 	}

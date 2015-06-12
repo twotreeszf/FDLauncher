@@ -43,18 +43,39 @@ namespace SystemHelper
 		return path;
 	}
 
-	HANDLE shellExecute(const CPath& exePath, const CString& params, BOOL runUAC)
+	HANDLE shellExecute(const CPath& exePath, const CString& params, BOOL elevate)
 	{
 		SHELLEXECUTEINFO shExInfo = { 0 };
 		shExInfo.cbSize			= sizeof(shExInfo);
 		shExInfo.fMask			= SEE_MASK_NOCLOSEPROCESS;
-		shExInfo.lpVerb			= runUAC ? L"runas" : L"";
+		shExInfo.lpVerb			= elevate ? L"runas" : L"";
 		shExInfo.lpFile			= exePath;
 		shExInfo.lpParameters	= params;
 		shExInfo.nShow			= SW_SHOW;
 
 		BOOL ret = ShellExecuteEx(&shExInfo);
 		return ret ? shExInfo.hProcess : NULL;
+	}
+
+	BOOL isUnderXP();
+	BOOL isElevated() 
+	{
+		if (isUnderXP())
+			return true;
+
+		BOOL fRet = FALSE;
+		HANDLE hToken = NULL;
+		if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) 
+		{
+			TOKEN_ELEVATION Elevation;
+			DWORD cbSize = sizeof(TOKEN_ELEVATION);
+			if (GetTokenInformation(hToken, TokenElevation, &Elevation, sizeof(Elevation), &cbSize)) 
+				fRet = Elevation.TokenIsElevated;
+		}
+		if (hToken) 
+			CloseHandle(hToken);
+
+		return fRet;
 	}
 
 	BOOL getFileVersion(const CString& filePath, CString& version)
@@ -131,6 +152,13 @@ namespace SystemHelper
 		
 	Exit0:
 		return Ret;
+	}
+
+	BOOL removeOpenFileWarning(const CPath& filePath)
+	{
+		CString adsPath = filePath;
+		adsPath.Append(L":Zone.Identifier");
+		return DeleteFile(adsPath);
 	}
 }
 

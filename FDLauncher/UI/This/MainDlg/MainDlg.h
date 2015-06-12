@@ -79,6 +79,7 @@ private:
 	BOOL _launchMianApp();
 	BOOL _delayDeleteSelf();
 	BOOL _deleteSelfByHelperProcess();
+	BOOL _elevateSelf();
 	bool _isCancel();
 };
 

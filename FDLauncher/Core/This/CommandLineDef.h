@@ -18,6 +18,7 @@ namespace CommandLine
 	const CString DELETE_ME			= L"-deleteMe";
 	const CString PATH				= L"-path";
 	const CString PROCESS_ID		= L"-processId";
+	const CString WAIT_EXIT			= L"-waitExit";
 }
 
 //--------------------------------------------------------------------------

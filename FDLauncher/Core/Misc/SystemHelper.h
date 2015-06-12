@@ -18,11 +18,13 @@ namespace SystemHelper
 	CPath	getMainAppPath();
 	CPath	getModulePath();
 	CPath	getTempPath();
-	HANDLE	shellExecute(const CPath& exePath, const CString& params, BOOL runUAC);
+	HANDLE	shellExecute(const CPath& exePath, const CString& params, BOOL elevate);
+	BOOL	isElevated();
 	BOOL	getFileVersion(const CString& filePath, CString& version);
 	BOOL	isUnderXP();
 	BOOL	waitProcess(DWORD processId);
 	BOOL	getDiskFreeSpace(LPCWSTR path, UInt64& space);
+	BOOL	removeOpenFileWarning(const CPath& filePath);
 }
 
 //--------------------------------------------------------------------------

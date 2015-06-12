@@ -46,10 +46,6 @@ void CMainDlg::onClickClose(TNotifyUI& msg, BOOL& bHandled)
 {
 	TRACE_STACK;
 
-	m_isCancel = true;
-	m_asyncOpt.wait();
-	m_isCancel = false;
-
 	Close();
 }
 
@@ -78,6 +74,11 @@ void CMainDlg::OnClose()
 	TRACE_STACK;
 
 	__super::OnClose();
+
+	m_isCancel = true;
+	m_asyncOpt.wait();
+	m_isCancel = false;
+
 	_Module.Exit();
 }
 
@@ -94,6 +95,13 @@ void CMainDlg::_runLauncher()
 		// install
 		if (!exist)
 		{
+			if (!SystemHelper::isElevated())
+			{
+				ret = _elevateSelf();
+				ERROR_CHECK_BOOL(ret);
+				return;
+			}
+
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
 				m_runType	= EnumRunType::Install;
@@ -191,6 +199,13 @@ void CMainDlg::_runLauncher()
 				QUIT();
 			else
 			{
+				if (!SystemHelper::isElevated())
+				{
+					ret = _elevateSelf();
+					ERROR_CHECK_BOOL(ret);
+					return;
+				}
+
 				CNotificationCenter::defaultCenter().postNotification([=]
 				{
 					m_state = EnumState::Downloading;
@@ -222,8 +237,7 @@ void CMainDlg::_runLauncher()
 					m_progressError->SetValue(120);
 				});
 
-				ret = _delayDeleteSelf();
-				ERROR_CHECK_BOOL(ret);
+				_delayDeleteSelf();
 
 				ret = _runInstall(UTF16ToUTF8(downloadPath));
 				ERROR_CHECK_BOOL(ret);
@@ -394,12 +408,14 @@ BOOL CMainDlg::_runInstall(const std::string& packagePath)
 	BOOL Ret = TRUE;
 	{
 		CPath path = UTF8ToUTF16(packagePath.c_str()).c_str();
+		SystemHelper::removeOpenFileWarning(path);
+		
 		HANDLE h = SystemHelper::shellExecute(path, L"/S", !SystemHelper::isUnderXP());
 		ERROR_CHECK_BOOLEX(h, Ret = FALSE);
 
 		WaitForSingleObject(h, INFINITE);
-		::Sleep(200);
-		DeleteFile(UTF8ToUTF16(packagePath.c_str()).c_str());
+		CloseHandle(h);
+		DeleteFile(path);
 	}
 
 Exit0:
@@ -462,6 +478,8 @@ BOOL CMainDlg::_deleteSelfByHelperProcess()
 		Ret = CopyFile(self, temp, FALSE);
 		ERROR_CHECK_BOOL(Ret);
 
+		SystemHelper::removeOpenFileWarning(temp);
+
 		CString cmd;
 		cmd.Format(L"%s %s \"%s\" %s %d", 
 			CommandLine::DELETE_ME, 
@@ -476,6 +494,29 @@ BOOL CMainDlg::_deleteSelfByHelperProcess()
 
 Exit0:
 	return Ret;
+}
+
+BOOL CMainDlg::_elevateSelf()
+{
+	BOOL ret = TRUE;
+	{
+		CPath selfPath = SystemHelper::getModulePath();
+		CString cmd;
+		cmd.Format(L"%s %s %d", CommandLine::WAIT_EXIT, CommandLine::PROCESS_ID, GetCurrentProcessId());
+
+		HANDLE h = SystemHelper::shellExecute(selfPath, cmd, TRUE);
+		ERROR_CHECK_BOOLEX(h, ret = FALSE);
+
+		CloseHandle(h);
+
+		CNotificationCenter::defaultCenter().postNotification([=]
+		{
+			Close();
+		});
+	}
+
+Exit0:
+	return ret;
 }
 
 bool CMainDlg::_isCancel()
