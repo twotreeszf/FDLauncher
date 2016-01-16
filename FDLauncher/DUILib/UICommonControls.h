@@ -211,6 +211,33 @@ protected:
     int m_nHoverLink;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////
+//
+class UILIB_API CProgressBarUI : public CControlUI
+{
+public:
+	CProgressBarUI();
+
+	LPCTSTR GetClass() const;
+	LPVOID GetInterface(LPCTSTR pstrName);
+	virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
+	void PaintStatusImage(HDC hDC);
+
+	int GetMinValue() const;
+	void SetMinValue(int nMin);
+	int GetMaxValue() const;
+	void SetMaxValue(int nMax);
+	int GetValue() const;
+	void SetValue(int nValue);
+
+protected:
+	DWORD m_barColor1;
+	DWORD m_barColor2;
+	int m_nMax;
+	int m_nMin;
+	int m_nValue;
+};
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 //

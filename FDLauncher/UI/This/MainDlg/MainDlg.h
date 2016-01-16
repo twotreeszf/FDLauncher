@@ -14,7 +14,7 @@
 
 //-------------------------------------------------------------------------
 
-class CMainDlg : public CIrregularForm
+class CMainDlg : public CFormUI
 {
 private:
 	struct EnumRunType
@@ -42,8 +42,8 @@ private:
 	};
 
 	CTextUI*			m_message;
-	CProgressUI*		m_progressNormal;
-	CProgressUI*		m_progressError;
+	CProgressBarUI*		m_progress;
+	CTextUI*			m_progressText;
 
 	EnumRunType::type	m_runType;
 	EnumState::type		m_state;

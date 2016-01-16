@@ -26,11 +26,10 @@
 //-------------------------------------------------------------------------
 
 CMainDlg::CMainDlg()
-	: CIrregularForm(false)
+	: CFormUI(false)
 	, m_isCancel(false)
 	, m_message(NULL)
-	, m_progressNormal(NULL)
-	, m_progressError(NULL)
+	, m_progress(NULL)
 	, m_runType(EnumRunType::None)
 	, m_state(EnumState::None)
 {
@@ -56,16 +55,16 @@ void CMainDlg::OnInit()
 	__super::OnInit();
 
 	DUI_BIND_CONTROL_VAR(L"message", m_message, CTextUI);
-	DUI_BIND_CONTROL_VAR(L"progress_normal", m_progressNormal, CProgressUI);
-	DUI_BIND_CONTROL_VAR(L"progress_error", m_progressError, CProgressUI);
+	DUI_BIND_CONTROL_VAR(L"progress", m_progress, CProgressBarUI);
+	DUI_BIND_CONTROL_VAR(L"progress_text", m_progressText, CTextUI);
 
 	CenterWindow();
 	SetWindowText(DUI_LOAD_STRING(STRID_APPNAME));
 
 	m_asyncOpt = std::async([=]
 	{
-		TRACE_STACK;
-		this->_runLauncher();
+	TRACE_STACK;
+	this->_runLauncher();
 	});
 }
 
@@ -76,7 +75,8 @@ void CMainDlg::OnClose()
 	__super::OnClose();
 
 	m_isCancel = true;
-	m_asyncOpt.wait();
+	if (m_asyncOpt.valid())
+		m_asyncOpt.wait();
 	m_isCancel = false;
 
 	_Module.Exit();
@@ -97,9 +97,9 @@ void CMainDlg::_runLauncher()
 		{
 			if (!SystemHelper::isElevated())
 			{
-				ret = _elevateSelf();
-				ERROR_CHECK_BOOL(ret);
-				return;
+			ret = _elevateSelf();
+			ERROR_CHECK_BOOL(ret);
+			return;
 			}
 
 			CNotificationCenter::defaultCenter().postNotification([=]
@@ -118,18 +118,19 @@ void CMainDlg::_runLauncher()
 			{
 				m_state		= EnumState::CheckUpdate;
 
-				m_message->SetText(DUI_LOAD_STRING(STRID_DOWNLOADING));
-				m_progressNormal->SetVisible(true);
-				m_progressError->SetVisible(false);
+				m_progress->SetVisible(true);
+				m_message->SetVisible(false);
 			});
 
 			BOOL haveUpdate = false;
-			std::string version, url, md5;
-			ret = _checkUpdate("0.0.0.0", haveUpdate, version, url, md5);
+			std::string version;
+			std::string downloadURL;
+			std::string md5;
+			ret = _checkUpdate("0.0.0.0", haveUpdate, version, downloadURL, md5);
 			ERROR_CHECK_BOOL(ret);
 
 			X_ASSERT(haveUpdate);
-			X_ASSERT(url.length());
+			X_ASSERT(downloadURL.length());
 			X_ASSERT(md5.length());
 
 			CPath downloadPath = SystemHelper::getTempPath();
@@ -142,12 +143,14 @@ void CMainDlg::_runLauncher()
 				m_state = EnumState::Downloading;
 			});
 
-			ret = _downloadPackage(url, UTF16ToUTF8(downloadPath));
+			ret = _downloadPackage(downloadURL, UTF16ToUTF8(downloadPath));
 			ERROR_CHECK_BOOL(ret);
 
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
 				m_state = EnumState::Verfiying;
+				m_progress->SetVisible(false);
+				m_message->SetVisible(true);
 				m_message->SetText(DUI_LOAD_STRING(STRID_INSTALLING));
 			});
 
@@ -157,8 +160,7 @@ void CMainDlg::_runLauncher()
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
 				m_state = EnumState::Installing;
-				m_progressNormal->SetValue(120);
-				m_progressError->SetValue(120);
+				m_progress->SetValue(120);
 			});
 
 			ret = _runInstall(UTF16ToUTF8(downloadPath));
@@ -166,8 +168,7 @@ void CMainDlg::_runLauncher()
 
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
-				m_progressNormal->SetValue(140);
-				m_progressError->SetValue(140);
+				m_progress->SetValue(140);
 			});
 
 			_deleteSelfByHelperProcess();
@@ -180,10 +181,8 @@ void CMainDlg::_runLauncher()
 				m_runType = EnumRunType::Update;
 				m_state = EnumState::CheckUpdate;
 
-				m_message->SetText(DUI_LOAD_STRING(STRID_DOWNLOADING));
-				m_progressNormal->SetVisible(true);
-				m_progressError->SetVisible(false);
-
+				m_progress->SetVisible(true);
+				m_message->SetVisible(false);
 			});
 
 			CString currentVersion;
@@ -209,9 +208,6 @@ void CMainDlg::_runLauncher()
 				CNotificationCenter::defaultCenter().postNotification([=]
 				{
 					m_state = EnumState::Downloading;
-					CString message;
-					message.Format(DUI_LOAD_STRING(STRID_UPDATTING), UTF8ToUTF16(version.c_str()).c_str());
-					m_message->SetText(message);
 				});
 
 				CPath downloadPath = SystemHelper::getTempPath();
@@ -233,20 +229,12 @@ void CMainDlg::_runLauncher()
 				CNotificationCenter::defaultCenter().postNotification([=]
 				{
 					m_state = EnumState::Installing;
-					m_progressNormal->SetValue(120);
-					m_progressError->SetValue(120);
 				});
 
 				_delayDeleteSelf();
 
 				ret = _runInstall(UTF16ToUTF8(downloadPath));
 				ERROR_CHECK_BOOL(ret);
-
-				CNotificationCenter::defaultCenter().postNotification([=]
-				{
-					m_progressNormal->SetValue(140);
-					m_progressError->SetValue(140);
-				});
 			}
 		}
 	}
@@ -259,8 +247,9 @@ Exit0:
 
 		CNotificationCenter::defaultCenter().postNotification([=]
 		{
-			m_progressNormal->SetVisible(false);
-			m_progressError->SetVisible(true);
+			m_progress->SetVisible(false);
+			m_message->SetTextColor(0xFFD74C50);
+			m_message->SetVisible(true);
 
 			CString message;
 			if (EnumRunType::Install == m_runType)
@@ -308,7 +297,7 @@ Exit0:
 	}
 }
 
-BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate, std::string& version, std::string& url, std::string& md5)
+BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate, std::string& version, std::string& downloadURL, std::string& md5)
 {
 	TRACE_STACK;
 
@@ -330,7 +319,7 @@ BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate,
 
 		const Json::Value& recvJson = recvJsonAll["data"];
 		version = recvJson["version"].asString();
-		url = recvJson["renewurl"].asString();
+		downloadURL = recvJson["renewurl"].asString();
 		md5 = recvJson["renewmd5"].asString();
 		haveUpdate = url.length();
 	}
@@ -367,8 +356,11 @@ void CMainDlg::_downloadProgress(double total, double now, double speed)
 		int value = now * 100.0 / total;
 		value = max(value, 4);
 
-		m_progressNormal->SetValue(value);
-		m_progressError->SetValue(value);
+		m_progress->SetValue(value);
+
+		CString str;
+		str.Format(L"%d%%", value);
+		m_progressText->SetText(str);
 	});
 }
 

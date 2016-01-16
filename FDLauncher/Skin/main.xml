@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Window size="568,393" mininfo="568,393" maxinfo="568,393" caption="0,0,0,393" xmlns="http://tempuri.org/skin.xsd">
-	<Font name="微软雅黑" size="14" default="true" />
+<Window size="424,330" mininfo="424,330" maxinfo="424,330" caption="0,0,0,330" xmlns="http://tempuri.org/skin.xsd">
+	<Font name="微软雅黑" size="12" default="true" />
 
-	<VerticalLayout bkimage="file='main/bkg.png'">
-		<Container height="83"/>
-		<HorizontalLayout height="23">
-			<Container width="525"/>
-			<Button 
-				name="close" width="23" height="23" 
-				normalimage="file='main/close1.png'" hotimage="file='main/close2.png'" pushedimage="file='main/close2.png'"
-				/>
+	<VerticalLayout bkcolor="FF29A0FA" bkcolor2="FF2784F9">
+		<HorizontalLayout height="22">
+			<Control />
+			<Container  width="22" height="22">
+				<Control bkimage="file='main/close1.png'" />
+				<Button name="close" normalimage="file='main/close2.png'" />
+			</Container>
 		</HorizontalLayout>
-		<Container height="210"/>
-		<VerticalLayout height="57">
-			<HorizontalLayout>
-				<Container width="36"/>
-				<VerticalLayout inset="20,0,20,0">
-					<Label name="message" align="center|vcenter" padding="0,3,0,3"/>
-					<Container height="10">
-					<Progress
-						name="progress_normal" visible="false"
-						bkimage="file='main\prog1.png' corner='5,5,5,5'" 
-						foreimage="file='main\prog2.png' corner='5,5,5,5'" 
-						min="0" max="140"
-						/>
-					<Progress 
-						name="progress_error" visible="false"
-						bkimage="file='main\prog1.png' corner='5,5,5,5'" 
-						foreimage="file='main\prog3.png' corner='5,5,5,5'" 
-						min="0" max="140"
-						/>
-					</Container>
-				</VerticalLayout>
-				<Container width="11"/>
-			</HorizontalLayout>			
-		</VerticalLayout>
+		<Control height="24" />
+		<HorizontalLayout height="52">
+			<Control />
+			<Control width="138" height="52" bkimage="file='main/text_logo.png'" />	
+			<Control />
+		</HorizontalLayout>
+		<Control height="28" />
+		<HorizontalLayout height="168">
+			<Control />
+			<Control width="329" height="168" bkimage="file='main/main_logo.png'" />	
+			<VerticalLayout>
+				<Control />
+				<Label name="progress_text" height="20" align="right|vcenter" textcolor="FFFFFFFF"/>
+			</VerticalLayout>
+		</HorizontalLayout>
+		<Container height="36" bkcolor="FFEBEBEB">
+			<VerticalLayout>
+				<Control height="16"/>
+				<HorizontalLayout>
+					<Control width="13" />
+					<ProgressBar name="progress" visible="false" height="4" min="0" max="100" bkcolor="FFFFFFFF" barcolor1="FF64C7FA" barcolor2="FF237EF4" />
+					<Control width="13" />
+				</HorizontalLayout>
+				<Control height="16"/>
+			</VerticalLayout>
+			<Label name="message" align="center|vcenter" padding="13,0,13,0" textcolor="FF0B67C8"/>		
+		</Container>
 	</VerticalLayout>  
 </Window>

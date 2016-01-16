@@ -398,6 +398,7 @@ namespace DuiLib {
                 case 11:
                     if (_tcscmp(pstrClass, _T("ChildWindow")) == 0)				pControl=new CChildWindowUI;
                     else if (_tcscmp(pstrClass, _T("ImageTurner")) == 0)		pControl = new CImageTurnerUI;
+					else if (_tcscmp(pstrClass, _T("ProgressBar")) == 0)		pControl = new CProgressBarUI;
                     // add by:shusong
                     break;
                 case 13:

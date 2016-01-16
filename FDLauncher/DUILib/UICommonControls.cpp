@@ -1084,6 +1084,89 @@ void CTextUI::SetHoverUnderline(bool bHoverUnderline)
     Invalidate();
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//
+
+CProgressBarUI::CProgressBarUI() : m_nMin(0), m_nMax(100), m_nValue(0), m_barColor1(0xFF00FF00), m_barColor2(0xFF0000FF)
+{ }
+
+LPCTSTR CProgressBarUI::GetClass() const
+{
+	return _T("ProgressBarUI");
+}
+
+LPVOID CProgressBarUI::GetInterface(LPCTSTR pstrName)
+{
+	if (_tcscmp(pstrName, _T("ProgressBar")) == 0) return static_cast<CProgressBarUI*>(this);
+	return CControlUI::GetInterface(pstrName);
+}
+
+void CProgressBarUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
+{
+	if (_tcscmp(pstrName, _T("min")) == 0) SetMinValue(_ttoi(pstrValue));
+	else if (_tcscmp(pstrName, _T("max")) == 0) SetMaxValue(_ttoi(pstrValue));
+	else if (_tcscmp(pstrName, _T("value")) == 0) SetValue(_ttoi(pstrValue));
+	else if (_tcscmp(pstrName, _T("barcolor1")) == 0) {
+		while (*pstrValue > _T('\0') && *pstrValue <= _T(' ')) pstrValue = ::CharNext(pstrValue);
+		if (*pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
+		LPTSTR pstr = NULL;
+		m_barColor1 = _tcstoul(pstrValue, &pstr, 16);
+	}
+	else if (_tcscmp(pstrName, _T("barcolor2")) == 0) {
+		while (*pstrValue > _T('\0') && *pstrValue <= _T(' ')) pstrValue = ::CharNext(pstrValue);
+		if (*pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
+		LPTSTR pstr = NULL;
+		m_barColor2 = _tcstoul(pstrValue, &pstr, 16);
+	}
+	else CControlUI::SetAttribute(pstrName, pstrValue);
+}
+
+void CProgressBarUI::PaintStatusImage(HDC hDC)
+{
+	if (m_nMax <= m_nMin) m_nMax = m_nMin + 1;
+	if (m_nValue > m_nMax) m_nValue = m_nMax;
+	if (m_nValue < m_nMin) m_nValue = m_nMin;
+
+	RECT rc = m_rcItem;
+	rc.right = rc.left + (m_nValue - m_nMin) * (m_rcItem.right - m_rcItem.left) / (m_nMax - m_nMin);
+
+	CRenderEngine::DrawGradient(hDC, rc, m_barColor1, m_barColor2, false, 8);
+}
+
+int CProgressBarUI::GetMinValue() const
+{
+	return m_nMin;
+}
+
+void CProgressBarUI::SetMinValue(int nMin)
+{
+	m_nMin = nMin;
+	Invalidate();
+}
+
+int CProgressBarUI::GetMaxValue() const
+{
+	return m_nMax;
+}
+
+void CProgressBarUI::SetMaxValue(int nMax)
+{
+	m_nMax = nMax;
+	Invalidate();
+}
+
+int CProgressBarUI::GetValue() const
+{
+	return m_nValue;
+}
+
+void CProgressBarUI::SetValue(int nValue)
+{
+	m_nValue = nValue;
+	Invalidate();
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
