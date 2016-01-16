@@ -23,7 +23,7 @@ namespace SystemHelper
 
 		CPath path = programFiles;
 		path.Append(L"ÀêÃ×Ñ§Ï°");
-		path.Append(L"LMXX.exe");
+		path.Append(L"FDBrowser.exe");
 
 		return path;
 	}

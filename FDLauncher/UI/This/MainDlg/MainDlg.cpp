@@ -312,34 +312,27 @@ BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate,
 {
 	TRACE_STACK;
 
-	BOOL ret = EC_OK;
+	BOOL ret = TRUE;
 	{
-		CString queryUrl;
-		queryUrl.Format(L"http://apiv4.fudaodashi.com/index.php?r=Upgrade/info&version=%s", UTF8ToUTF16(currentVersion.c_str()).c_str());
-
-		LOG(INFO) << "request url;" << queryUrl << std::endl;
-
+		ErrorCode ec = EC_OK;
 		LibCurl::CHttpGetRequest get;
-		ErrorCode ec = get.requestURL(UTF16ToUTF8(queryUrl).c_str(), 5);
-		ERROR_CHECK_BOOLEX(EC_OK == ec, ret = FALSE);
+		std::string currentVersion = "1.2016.1.10";
+		std::string url = StringHelper::format(
+			"http://web.limixuexi.com/index.php?r=config/info&version=%s",
+			currentVersion.c_str());
+		ec = get.requestURL("http://web.limixuexi.com/index.php?r=config/info", 5);
+		ERROR_CHECK_BOOL(EC_OK == ec, ret = FALSE);
 
-		const std::string& recvData = get.getRecvData();
-		LOG(INFO) << "response json;" << recvData << std::endl;
+		const std::string& responseData = get.getRecvData();
+		Json::Value recvJsonAll;
+		ret = Json::Reader().parse(responseData, recvJsonAll);
+		ERROR_CHECK_BOOLEX(ret);
 
-		Json::Value recvJson;
-		ret = Json::Reader().parse(recvData, recvJson);
-		ERROR_CHECK_BOOL(ret);
-
-		haveUpdate = recvJson["result"].asInt();
-		if (haveUpdate)
-		{
-			const Json::Value& data = recvJson["data"];
-			version = data["version"].asString();
-			url = data["url"].asString();
-			md5 = data["md5"].asString();
-
-			ERROR_CHECK_BOOLEX(version.length() && url.length() && md5.length(), ret = FALSE);
-		}
+		const Json::Value& recvJson = recvJsonAll["data"];
+		version = recvJson["version"].asString();
+		url = recvJson["renewurl"].asString();
+		md5 = recvJson["renewmd5"].asString();
+		haveUpdate = url.length();
 	}
 
 Exit0:
