@@ -305,7 +305,6 @@ BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate,
 	{
 		ErrorCode ec = EC_OK;
 		LibCurl::CHttpGetRequest get;
-		std::string currentVersion = "1.2016.1.10";
 		std::string url = StringHelper::format(
 			"http://web.limixuexi.com/index.php?r=config/info&version=%s",
 			currentVersion.c_str());
