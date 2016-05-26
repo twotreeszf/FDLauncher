@@ -308,7 +308,7 @@ BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate,
 		std::string url = StringHelper::format(
 			"http://web.limixuexi.com/index.php?r=config/info&version=%s",
 			currentVersion.c_str());
-		ec = get.requestURL("http://web.limixuexi.com/index.php?r=config/info", 5);
+		ec = get.requestURL(url.c_str(), 5);
 		ERROR_CHECK_BOOL(EC_OK == ec, ret = FALSE);
 
 		const std::string& responseData = get.getRecvData();
@@ -320,7 +320,7 @@ BOOL CMainDlg::_checkUpdate(const std::string& currentVersion, BOOL& haveUpdate,
 		version = recvJson["version"].asString();
 		downloadURL = recvJson["renewurl"].asString();
 		md5 = recvJson["renewmd5"].asString();
-		haveUpdate = url.length();
+		haveUpdate = downloadURL.length();
 	}
 
 Exit0:
