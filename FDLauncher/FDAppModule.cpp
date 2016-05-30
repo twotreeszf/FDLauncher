@@ -18,6 +18,7 @@
 
 #define FD_SINGLE_MUTEX				L"{8ca5a5d7-ba47-4921-8c5f-cca8fbff2bc3}"
 
+
 //-------------------------------------------------------------------------
 
 HRESULT CFDAppModule::Init(ATL::_ATL_OBJMAP_ENTRY* pObjMap, HINSTANCE hInstance, const GUID* pLibID /* = NULL */)
@@ -78,7 +79,13 @@ int CFDAppModule::Run(LPTSTR lpstrCmdLine /*= NULL*/, int nCmdShow /*= SW_SHOWDE
 		ASSERT(mutex);
 		BOOL bHasRun = ERROR_ALREADY_EXISTS == ::GetLastError();
 		if (bHasRun)
+		{
+			HWND browserWnd = FindWindow(L"FDBrowserMain", NULL);
+			if (browserWnd)
+				::SendMessage(browserWnd, WM_SYSCOMMAND, SC_RESTORE, 0);
 			QUIT();
+		}
+			
 
 		CMessageLoop theLoop;
 		theLoop.AddMessageFilter(this);

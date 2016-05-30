@@ -63,8 +63,8 @@ void CMainDlg::OnInit()
 
 	m_asyncOpt = std::async([=]
 	{
-	TRACE_STACK;
-	this->_runLauncher();
+		TRACE_STACK;
+		this->_runLauncher();
 	});
 }
 
@@ -116,10 +116,7 @@ void CMainDlg::_runLauncher()
 
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
-				m_state		= EnumState::CheckUpdate;
-
-				m_progress->SetVisible(true);
-				m_message->SetVisible(false);
+				m_state = EnumState::CheckUpdate;
 			});
 
 			BOOL haveUpdate = false;
@@ -141,6 +138,9 @@ void CMainDlg::_runLauncher()
 			CNotificationCenter::defaultCenter().postNotification([=]
 			{
 				m_state = EnumState::Downloading;
+				m_progress->SetVisible(true);
+				m_message->SetVisible(false);
+
 			});
 
 			ret = _downloadPackage(downloadURL, UTF16ToUTF8(downloadPath));
@@ -180,9 +180,6 @@ void CMainDlg::_runLauncher()
 			{
 				m_runType = EnumRunType::Update;
 				m_state = EnumState::CheckUpdate;
-
-				m_progress->SetVisible(true);
-				m_message->SetVisible(false);
 			});
 
 			CString currentVersion;
@@ -208,6 +205,8 @@ void CMainDlg::_runLauncher()
 				CNotificationCenter::defaultCenter().postNotification([=]
 				{
 					m_state = EnumState::Downloading;
+					m_progress->SetVisible(true);
+					m_message->SetVisible(false);
 				});
 
 				CPath downloadPath = SystemHelper::getTempPath();
